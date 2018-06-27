@@ -1,0 +1,2 @@
+Para videos com explicação de varios projetos, o link do youtube pode se referir a apenas um intervalo do video
+EX: https://www.youtube.com/embed/chElHV99xak?start=53&end=59
