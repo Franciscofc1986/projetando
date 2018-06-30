@@ -9,32 +9,31 @@
 			// Retrive Products
 			if(!empty($_GET["product_id"]))
 			{
-				echo "GET um produto";
 				$product_id=intval($_GET["product_id"]);
-				echo $product_id;
+				echo "GET";
 			}
 			else
 			{
-				echo "GET todos os produtos";
-				$product_id=intval($_GET["product_id"]);
-				echo $product_id;
+				echo "GETs";
 			}
 			break;
 		case 'POST':
-			// Insert Product		
-			echo "POST um produto";
+			// Insert Product
+			echo "POST";
 			break;
 		case 'PUT':
 			// Update Product
-			echo "PUT um produto";
+			$product_id=intval($_GET["product_id"]);
+			echo "PUT";
 			break;
 		case 'DELETE':
 			// Delete Product
-			echo "DELETE um produto";
+			$product_id=intval($_GET["product_id"]);
+			echo "DELETE";
 			break;
 		default:
 			// Invalid Request Method
-			echo "DEFAULT um produto";
+			header("HTTP/1.0 405 Method Not Allowed");
 			break;
 	}
 ?>

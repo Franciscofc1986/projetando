@@ -1,0 +1,52 @@
+Banco de Dados
+
+tbProjeto
+ - idProjeto
+ - urlVideo
+ - passosJson
+ - custosJson
+ - materiaisJson
+ - idUsuario
+
+tbComentario
+ - idComentario
+ - idProjeto
+ - ordem
+ - idUsuario
+ - mensagem
+
+tbTagProjetos
+ - idTagProjeto
+ - idProjeto
+ - idTag
+
+tbTag
+ - idTag
+ - nomeTag
+
+tbGrupo
+ - idGrupo
+ - nomeGrupo
+
+tbGrupoGrupo
+ - idGrupoGrupo
+ - idGrupoPai
+ - idGrupoFilho
+
+tbUsuario
+ - idUsuario
+ - nomeUsuario
+ - foto
+ - email
+ - hashSenha
+
+tbCurtidas
+ - idCurtida
+ - idUsuario
+ - idProjeto
+
+tbMensagem
+ - idMensagem
+ - idUsarioEmissor
+ - idUsuarioDestinatario
+ - ordem
