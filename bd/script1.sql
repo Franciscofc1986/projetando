@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS `tbcomentario` (
 
 DROP TABLE IF EXISTS `tbcurtidas`;
 CREATE TABLE IF NOT EXISTS `tbcurtidas` (
-  `idCurtida` int(11) NOT NULL AUTO_INCREMENT,
-  `idUsuario` int(11) NOT NULL,
-  `idProjeto` int(11) NOT NULL,
-  PRIMARY KEY (`idCurtida`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idUsuario` int(11) NULL,
+  `idProjeto` int(11) NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

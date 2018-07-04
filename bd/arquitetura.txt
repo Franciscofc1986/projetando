@@ -1,7 +1,8 @@
 Banco de Dados
 
 tbProjeto
- - idProjeto
+ - id
+ - nome
  - urlVideo
  - passosJson
  - custosJson
@@ -9,44 +10,49 @@ tbProjeto
  - idUsuario
 
 tbComentario
- - idComentario
+ - id
  - idProjeto
  - ordem
  - idUsuario
  - mensagem
 
 tbTagProjetos
- - idTagProjeto
+ - id
  - idProjeto
  - idTag
 
 tbTag
- - idTag
+ - id
  - nomeTag
 
 tbGrupo
- - idGrupo
+ - id
  - nomeGrupo
 
 tbGrupoGrupo
- - idGrupoGrupo
- - idGrupoPai
- - idGrupoFilho
+ - id
+ - idPai
+ - idFilho
+
+tbGrupoProjeto
+ - id
+ - idGrupo
+ - idProjeto
 
 tbUsuario
- - idUsuario
+ - id
  - nomeUsuario
  - foto
  - email
  - hashSenha
 
 tbCurtidas
- - idCurtida
+ - id
  - idUsuario
  - idProjeto
 
 tbMensagem
- - idMensagem
+ - id
  - idUsarioEmissor
  - idUsuarioDestinatario
  - ordem
