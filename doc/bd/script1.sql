@@ -11,11 +11,12 @@
 
 DROP TABLE IF EXISTS `tbcomentario`;
 CREATE TABLE IF NOT EXISTS `tbcomentario` (
-  `idComentario` int(11) NOT NULL,
-  `idProjeto` int(11) NOT NULL,
-  `ordem` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `mensagem` text NOT NULL
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idProjeto` int(11) NULL,
+  `ordem` int(11) NULL,
+  `idUsuario` int(11) NULL,
+  `mensagem` text NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -40,9 +41,9 @@ CREATE TABLE IF NOT EXISTS `tbcurtidas` (
 
 DROP TABLE IF EXISTS `tbgrupo`;
 CREATE TABLE IF NOT EXISTS `tbgrupo` (
-  `idGrupo` int(11) NOT NULL AUTO_INCREMENT,
-  `nomeGrupo` varchar(500) NOT NULL,
-  PRIMARY KEY (`idGrupo`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(500) NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -53,10 +54,24 @@ CREATE TABLE IF NOT EXISTS `tbgrupo` (
 
 DROP TABLE IF EXISTS `tbgrupogrupo`;
 CREATE TABLE IF NOT EXISTS `tbgrupogrupo` (
-  `idGrupoGrupo` int(11) NOT NULL AUTO_INCREMENT,
-  `idGrupoPai` int(11) NOT NULL,
-  `idGrupoFilho` int(11) NOT NULL,
-  PRIMARY KEY (`idGrupoGrupo`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idPai` int(11) NULL,
+  `idFilho` int(11) NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tbgrupoprojeto`
+--
+
+DROP TABLE IF EXISTS `tbgrupoprojeto`;
+CREATE TABLE IF NOT EXISTS `tbgrupoprojeto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idGrupo` int(11) NULL,
+  `idProjeto` int(11) NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -67,13 +82,14 @@ CREATE TABLE IF NOT EXISTS `tbgrupogrupo` (
 
 DROP TABLE IF EXISTS `tbprojeto`;
 CREATE TABLE IF NOT EXISTS `tbprojeto` (
-  `idProjeto` int(11) NOT NULL AUTO_INCREMENT,
-  `urlVideo` varchar(1000) NOT NULL,
-  `passosJson` text NOT NULL,
-  `custosJson` text NOT NULL,
-  `materiaisJson` text NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  PRIMARY KEY (`idProjeto`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(1000) NULL,
+  `urlVideo` varchar(1000) NULL,
+  `passosJson` text NULL,
+  `custosJson` text NULL,
+  `materiaisJson` text NULL,
+  `idUsuario` int(11) NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -84,9 +100,9 @@ CREATE TABLE IF NOT EXISTS `tbprojeto` (
 
 DROP TABLE IF EXISTS `tbtag`;
 CREATE TABLE IF NOT EXISTS `tbtag` (
-  `idTag` int(11) NOT NULL AUTO_INCREMENT,
-  `nomeTag` varchar(500) NOT NULL,
-  PRIMARY KEY (`idTag`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(500) NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -95,12 +111,12 @@ CREATE TABLE IF NOT EXISTS `tbtag` (
 -- Estrutura da tabela `tbtagprojetos`
 --
 
-DROP TABLE IF EXISTS `tbtagprojetos`;
-CREATE TABLE IF NOT EXISTS `tbtagprojetos` (
-  `idTagProjeto` int(11) NOT NULL AUTO_INCREMENT,
-  `idProjeto` int(11) NOT NULL,
-  `idTag` int(11) NOT NULL,
-  PRIMARY KEY (`idTagProjeto`)
+DROP TABLE IF EXISTS `tbtagprojeto`;
+CREATE TABLE IF NOT EXISTS `tbtagprojeto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idProjeto` int(11) NULL,
+  `idTag` int(11) NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -111,12 +127,12 @@ CREATE TABLE IF NOT EXISTS `tbtagprojetos` (
 
 DROP TABLE IF EXISTS `tbusuario`;
 CREATE TABLE IF NOT EXISTS `tbusuario` (
-  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nomeUsuario` varchar(500) NOT NULL,
-  `foto` varchar(500) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `hashSenha` varchar(500) NOT NULL,
-  PRIMARY KEY (`idUsuario`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(500) NULL,
+  `foto` varchar(500) NULL,
+  `email` varchar(200) NULL,
+  `hashSenha` varchar(500) NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 COMMIT;
 
@@ -128,9 +144,9 @@ COMMIT;
 
 DROP TABLE IF EXISTS `tbmensagem`;
 CREATE TABLE IF NOT EXISTS `tbmensagem` (
-  `idMensagem` int(11) NOT NULL AUTO_INCREMENT,
-  `idUsarioEmissor` int(11) NOT NULL,
-  `idUsuarioDestinatario` int(11) NOT NULL,
-  `ordem` int(11) NOT NULL,
-  PRIMARY KEY (`idMensagem`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idEmissor` int(11) NULL,
+  `idDestinatario` int(11) NULL,
+  `ordem` int(11) NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

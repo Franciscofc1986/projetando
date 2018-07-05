@@ -19,7 +19,37 @@
 	
 	switch ($method) {
 		case 'GET':
-			$sql = "select * from `$table`".($keyId?" WHERE id=$keyId":''); break;
+		 	if($table == "filtro"){
+				 $idRegistro = array_shift($request)+0;
+				switch ($keyId) {
+					case '1': //retorna os grupos que possuem o pai com id = x
+						$sql = "select tbGrupo.* ".
+								"FROM tbGrupo, tbGrupoGrupo ".
+								"WHERE tbGrupo.id = tbGrupoGrupo.idFilho ".
+								"AND tbGrupoGrupo.idPai = $idRegistro ".
+								"GROUP BY tbGrupo.nome";
+						break;
+					case '2': //retorna os projetos que são filhos do grupo com id = x
+						$sql = "select tbProjeto.* ".
+								"FROM tbProjeto, tbGrupoProjeto ".
+								"WHERE tbProjeto.id = tbGrupoProjeto.idProjeto ".
+								"AND tbGrupoProjeto.idGrupo = $idRegistro ".
+								"GROUP BY tbProjeto.nome";
+						break;
+					case '3': //retorna os projetos que possuem a tag x
+						$sql = "select tbProjeto.* ".
+							   "FROM tbProjeto, tbTag, tbTagProjeto ".
+							   "WHERE tbProjeto.id = tbTagProjeto.idProjeto ".
+							   "AND tbTagProjeto.idTag = tbTag.id ".
+							   "AND tbTag.nome = '$idRegistro' ".
+							   "GROUP BY tbProjeto.nome";
+						break;
+				}
+			}
+			else{
+				$sql = "select * from `$table`".($keyId?" WHERE id=$keyId":'');
+			}
+			break;
 		case 'POST':
 			if($keyId){
 				$sql = "update `$table` set $set where id=$keyId";
@@ -28,7 +58,8 @@
 			}
 			break;
 		case 'DELETE':
-			$sql = "delete from `$table` where id = $keyId"; break;
+			$sql = "delete from `$table` where id = $keyId"; 
+			break;
 	}
 	ChromePhp::log("SQL: ".$sql);
 	$statement = $pdo->prepare($sql);

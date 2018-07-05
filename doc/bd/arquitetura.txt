@@ -16,7 +16,7 @@ tbComentario
  - idUsuario
  - mensagem
 
-tbTagProjetos
+tbTagProjeto
  - id
  - idProjeto
  - idTag
@@ -27,7 +27,7 @@ tbTag
 
 tbGrupo
  - id
- - nomeGrupo
+ - nome
 
 tbGrupoGrupo
  - id
@@ -41,7 +41,7 @@ tbGrupoProjeto
 
 tbUsuario
  - id
- - nomeUsuario
+ - nome
  - foto
  - email
  - hashSenha
