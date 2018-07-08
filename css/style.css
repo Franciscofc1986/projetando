@@ -1,0 +1,63 @@
+.container-login  {
+    margin: 0 auto;
+}
+
+.foto_barra_superior{
+    margin-top: 4px;
+    max-width: 70px;
+
+    width: auto;
+    height: auto;
+}
+
+.texto_vetado{
+    text-decoration: line-through;
+}
+
+
+/*Loading*/
+#loader-wrapper .loader-section {
+    position: fixed;
+    top: 0;
+    width: 51%;
+    height: 100%;
+    background: #222;
+    z-index: 1000;
+}
+ 
+#loader-wrapper .loader-section.section-left {
+    left: 0;
+}
+ 
+#loader-wrapper .loader-section.section-right {
+    right: 0;
+}
+
+#loader {
+    z-index: 1001; /* anything higher than z-index: 1000 of .loader-section */
+}
+h1 {
+    color: #EEEEEE;
+}
+
+ .collapsible-header{
+    padding: 0.5rem;
+}
+
+.collapsible-body{
+    padding: 0.5rem;
+}
+
+.data_publicacao{
+    color: gray;
+    font-weight: bold;
+    text-align: center;
+    font-size: 10px;
+}
+
+.grupos{
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+

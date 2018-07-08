@@ -24,10 +24,12 @@ tbTagProjeto
 tbTag
  - id
  - nomeTag
+ - foto
 
 tbGrupo
  - id
  - nome
+ - imagem
 
 tbGrupoGrupo
  - id
