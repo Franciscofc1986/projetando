@@ -56,9 +56,9 @@ echo '<div class="nav-wrapper light-blue darken-3">
 
     echo '</header>';
 ?>
-    <nav class="indigo lighten-4">
-        <div class="nav-wrapper" style="margin-left: 10px;">
-            <div class="col s12">
+    <nav class="indigo lighten-4" style="height: 40px;">
+        <div class="nav-wrapper" style="margin-left: 10px; font-size: 10px;">
+            <div class="col s12" id="navegacaoTopo">
             <a href="#1" class="breadcrumb">First</a>
             <a href="#2" class="breadcrumb">Second</a>
             <a href="#3" class="breadcrumb">Third</a>
@@ -94,7 +94,7 @@ echo '<div class="nav-wrapper light-blue darken-3">
   <div class="row" id="listaProjetos">
 
 <section class="col s12 m6 l6">
-  <div class="card">
+  <div class="card z-depth-5">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="https://img.youtube.com/vi/ymknJKeFoLY/0.jpg">
     </div>
@@ -140,7 +140,7 @@ echo '<div class="nav-wrapper light-blue darken-3">
 </section>
 
 <section class="col s12 m6 l6">
-  <div class="card">
+  <div class="card z-depth-5">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="https://img.youtube.com/vi/ymknJKeFoLY/0.jpg">
     </div>
@@ -186,7 +186,7 @@ echo '<div class="nav-wrapper light-blue darken-3">
 </section>
 
 <section class="col s12 m6 l6">
-  <div class="card">
+  <div class="card z-depth-4">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="https://img.youtube.com/vi/ymknJKeFoLY/0.jpg">
     </div>
@@ -232,7 +232,7 @@ echo '<div class="nav-wrapper light-blue darken-3">
 </section>
 
 <section class="col s12 m6 l6">
-  <div class="card">
+  <div class="card z-depth-4">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="https://img.youtube.com/vi/ymknJKeFoLY/0.jpg">
     </div>
@@ -278,7 +278,7 @@ echo '<div class="nav-wrapper light-blue darken-3">
 </section>
 
 <section class="col s12 m6 l6">
-  <div class="card">
+  <div class="card z-depth-5">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="https://img.youtube.com/vi/ymknJKeFoLY/0.jpg">
     </div>
@@ -324,7 +324,7 @@ echo '<div class="nav-wrapper light-blue darken-3">
 </section>
 
 <section class="col s12 m6 l6">
-  <div class="card">
+  <div class="card z-depth-5">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="https://img.youtube.com/vi/ymknJKeFoLY/0.jpg">
     </div>

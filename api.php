@@ -18,13 +18,13 @@
 
 	$request = explode('/', trim($_SERVER["PATH_INFO"],'/'));
 	$table = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
-	$keyId = array_shift($request)+0;
+	$keyId = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
 	
 	
 	switch ($method) {
 		case 'GET':
 		 	if($table == "filtro"){
-				 $idRegistro = array_shift($request)+0;
+				 $idRegistro = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
 				switch ($keyId) {
 					case 'grupos_no_grupo': //retorna os grupos que possuem o pai com id = x   - /filter/grupos_no_grupo/2
 						$sql = "select tbgrupo.* ".
@@ -34,11 +34,19 @@
 								"GROUP BY tbgrupo.nome";
 						break;
 					case 'projetos_no_grupo': //retorna os projetos que são filhos do grupo com id = x
-						$sql = "select tbprojeto.* ".
-								"FROM tbprojeto, tbgrupoprojeto ".
+						$sql = "select tbprojeto.*, tbusuario.nome as autor, tbusuario.foto as fotoAutor, ".
+								"tbusuario.email as emailAutor, ".
+								"(select count(*) from tbcurtidas where idProjeto = tbprojeto.id) as curtidas, ".
+								"(SELECT group_concat( tbtag.nome ) as tags ".
+								"FROM tbtag, tbtagprojeto ".
+								"WHERE tbtagprojeto.idProjeto = tbprojeto.id ".
+								"AND tbtag.id = tbtagprojeto.idTag ".
+								"ORDER BY tbtag.nome) as tags ".						
+								"FROM tbprojeto, tbgrupoprojeto, tbusuario ".
 								"WHERE tbprojeto.id = tbgrupoprojeto.idProjeto ".
-								"AND tbgrupoprojeto.idGrupo = $idRegistro ".
-								"GROUP BY tbprojeto.nome";
+								"AND tbusuario.id = tbprojeto.idUsuario ".
+								"AND tbgrupoprojeto.idGrupo = $idRegistro  ".
+								"ORDER BY curtidas DESC";
 						break;
 					case 'projetos_com_tag': //retorna os projetos que possuem a tag x
 						$sql = "select tbprojeto.* ".

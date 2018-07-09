@@ -1,5 +1,6 @@
 //menu lateral
 var historicoGrupo = [];
+var historicoNomeGrupo = [];
 
 $('.menu-1').sideNav({
     menuWidth: 300, // Default is 300
@@ -19,21 +20,40 @@ $('.menu-2').sideNav({
     onClose: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is closed
 });
 
-function carregarItens(idGrupo, voltou=false){
+function carregarItens(idGrupo, voltou=false, nomeGrupo=""){
     //var url = "http://temlogica.com/api.php/filtro/grupos_no_grupo/"+idGrupo;
     var url = "http://localhost/api.php/filtro/grupos_no_grupo/"+idGrupo;
+    
+    if(nomeGrupo=="") $("#tituloGrupo").html("Grupos de Projetos");
+    else $("#tituloGrupo").html(nomeGrupo);
+    if(voltou){ 
+        
+        var remover = true;
+        do {
+            var grupoRemovido = historicoGrupo.pop();    
+            var nomegrupoRemovido = historicoNomeGrupo.pop(); 
+            if(grupoRemovido == idGrupo){
+                remover = false;
+                historicoGrupo.push(grupoRemovido); 
+                historicoNomeGrupo.push(nomegrupoRemovido); 
+            }
+        } while (remover); 
+    }
+    else{ 
+        historicoGrupo.push(idGrupo);
+        if(nomeGrupo != ""){
+            historicoNomeGrupo.push(nomeGrupo);
+        }
+    }
 
-    if(voltou) historicoGrupo.pop();
-    else historicoGrupo.push(idGrupo);
-
-
+    $("#navegacaoTopo").html('<a href="#" onclick="carregarItens(0)" class="breadcrumb">Inicio</a>');
     $("#botaoVoltar").html("");
     if(idGrupo != 0){
-        var item = 0;
-        if(historicoGrupo[historicoGrupo.length-2] != undefined) item = historicoGrupo[historicoGrupo.length-2];
-        var textoBotaoVoltar = '<a href="#" onclick="carregarItens('+item+', true)"><img src="imagem/back.png" style="width:40px; heidth:40px; "></a>';
-        $("#botaoVoltar").append(textoBotaoVoltar)
-    };
+        preencherNavegacao();
+    }else{
+        historicoNomeGrupo = [];
+        historicoGrupo = [];
+    }
     
     $.ajax({
         type: "GET", 
@@ -50,10 +70,10 @@ function carregarItens(idGrupo, voltou=false){
         success: function(retorno) {
             $("#listaGrupos").html("");
                 $.each(retorno,function(i, grupo){
-
+                    var nomeGrupoComAspas = "'" + grupo.nome + "'";
                     if(grupo.imagem == null) grupo.imagem = "padrao.jpeg";
-                    var item = '<div class="col s6 m3 l2"><a href="#" onclick="carregarItens('+grupo.id+')">'+
-                        '<div class="card"><div class="card-image">'+
+                    var item = '<div class="col s6 m3 l2"><a href="#" onclick="carregarItens('+grupo.id+', false, '+nomeGrupoComAspas+')">'+
+                        '<div class="card z-depth-5"><div class="card-image">'+
                             '<img src="imagem/grupo/'+grupo.imagem+'">'+
                             '</div><div class="card-content"><p><div class="grupos">'+
                             grupo.nome+
@@ -63,6 +83,16 @@ function carregarItens(idGrupo, voltou=false){
                 });
         } 
     });  
+}
+
+function preencherNavegacao(){
+    $.each(historicoNomeGrupo,function(i, nomeGrupo){
+        nomeGrupoComAspas = "'" + nomeGrupo + "'";
+
+        if(nomeGrupo.length > 7) nomeGrupo = nomeGrupo.substring(0, 4) + "...";
+        var itemNavagacao = '<a href="#" onclick="carregarItens('+historicoGrupo[i]+', true, '+nomeGrupoComAspas+')" class="breadcrumb">'+nomeGrupo+'</a>';
+        $("#navegacaoTopo").append(itemNavagacao);
+    });
 }
 
 carregarItens(0);
