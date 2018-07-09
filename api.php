@@ -34,18 +34,22 @@
 								"GROUP BY tbgrupo.nome";
 						break;
 					case 'projetos_no_grupo': //retorna os projetos que são filhos do grupo com id = x
-						$sql = "select tbprojeto.*, tbusuario.nome as autor, tbusuario.foto as fotoAutor, ".
-								"tbusuario.email as emailAutor, ".
-								"(select count(*) from tbcurtidas where idProjeto = tbprojeto.id) as curtidas, ".
-								"(SELECT group_concat( tbtag.nome ) as tags ".
+						$sql = "select tbprojeto.*, tbusuario.nome as autor, tbusuario.foto as fotoAutor, tbusuario.email as emailAutor, ". 
+								"(select count(*) from tbcurtidas where idProjeto = tbprojeto.id) as curtidas, ". 
+								"(SELECT group_concat( tbtag.nome ) as nomes ".
 								"FROM tbtag, tbtagprojeto ".
-								"WHERE tbtagprojeto.idProjeto = tbprojeto.id ".
+								"WHERE tbtagprojeto.idProjeto = tbprojeto.id ". 
 								"AND tbtag.id = tbtagprojeto.idTag ".
-								"ORDER BY tbtag.nome) as tags ".						
+								"ORDER BY tbtag.nome) as tags, ".
+								"(SELECT group_concat( tbtag.foto ) as fotos ".
+								"FROM tbtag, tbtagprojeto ".
+								"WHERE tbtagprojeto.idProjeto = tbprojeto.id ". 
+								"AND tbtag.id = tbtagprojeto.idTag ".
+								"ORDER BY tbtag.nome) as fotos ".
 								"FROM tbprojeto, tbgrupoprojeto, tbusuario ".
-								"WHERE tbprojeto.id = tbgrupoprojeto.idProjeto ".
+								"WHERE tbprojeto.id = tbgrupoprojeto.idProjeto ". 
 								"AND tbusuario.id = tbprojeto.idUsuario ".
-								"AND tbgrupoprojeto.idGrupo = $idRegistro  ".
+								"AND tbgrupoprojeto.idGrupo = $idRegistro ".
 								"ORDER BY curtidas DESC";
 						break;
 					case 'projetos_com_tag': //retorna os projetos que possuem a tag x

@@ -1,4 +1,6 @@
-//menu lateral
+//var urlBase = "http://temlogica.com";
+var urlBase = "http://localhost";
+
 var historicoGrupo = [];
 var historicoNomeGrupo = [];
 
@@ -21,8 +23,7 @@ $('.menu-2').sideNav({
 });
 
 function carregarItens(idGrupo, voltou=false, nomeGrupo=""){
-    //var url = "http://temlogica.com/api.php/filtro/grupos_no_grupo/"+idGrupo;
-    var url = "http://localhost/api.php/filtro/grupos_no_grupo/"+idGrupo;
+    var url = urlBase + "/api.php/filtro/grupos_no_grupo/"+idGrupo;
     
     if(nomeGrupo=="") $("#tituloGrupo").html("Grupos de Projetos");
     else $("#tituloGrupo").html(nomeGrupo);
@@ -62,7 +63,7 @@ function carregarItens(idGrupo, voltou=false, nomeGrupo=""){
         contentType: "application/json; charset=utf-8",
         cache: false,
         beforeSend: function() {
-            $("#listaGrupos").html("Carregando..."); //Carregando
+                $("#listaGrupos").html('<div class="progress indigo lighten-4"><div class="indeterminate light-blue darken-3"></div></div>'); //Carregando
         },
         error: function() {
             $("#listaGrupos").html("O servidor não conseguiu processar o pedido.");
@@ -83,6 +84,8 @@ function carregarItens(idGrupo, voltou=false, nomeGrupo=""){
                 });
         } 
     });  
+
+    carregarProjetos(idGrupo);
 }
 
 function preencherNavegacao(){
@@ -93,6 +96,71 @@ function preencherNavegacao(){
         var itemNavagacao = '<a href="#" onclick="carregarItens('+historicoGrupo[i]+', true, '+nomeGrupoComAspas+')" class="breadcrumb">'+nomeGrupo+'</a>';
         $("#navegacaoTopo").append(itemNavagacao);
     });
+}
+
+function preencherTags(tags, fotos){
+    var htmlTags = "";
+    var listaTags = tags.split(",");
+    var listaFotos = fotos.split(",");
+
+     $.each(listaTags,function(i, tag){
+
+        var htmlTag = '<div class="chip">'+
+                    '<img src="imagem/tag/'+listaFotos[i]+'" alt="imagem">'+
+                     tag+'</div>';
+        htmlTags += htmlTag;
+     });
+
+     return htmlTags;
+
+
+}
+
+
+function carregarProjetos(idGrupo){
+    var url = urlBase + "/api.php/filtro/projetos_no_grupo/"+idGrupo;
+    
+    $.ajax({
+        type: "GET", 
+        url: url,
+        timeout: 3000,
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        beforeSend: function() {
+            $("#listaProjetos").html('<div class="progress indigo lighten-4"><div class="indeterminate light-blue darken-3"></div></div>'); //Carregando
+        },
+        error: function() {
+            $("#listaProjetos").html("O servidor não conseguiu processar o pedido.");
+        },
+        success: function(retorno) {
+            $("#listaProjetos").html("");
+                $.each(retorno,function(i, projeto){
+
+
+               var projetoTag = '<section class="col s12 m6 l6">'+
+                        '<div class="card z-depth-5">'+
+                            '<div class="card-image waves-effect waves-block waves-light">'+
+                            '<img class="activator" src="https://img.youtube.com/vi/'+projeto.codigoVideo+'/0.jpg">'+
+                            '</div>'+
+                            '<div class="card-content">'+
+                            '<span class="card-title activator grey-text text-darken-4" >'+projeto.nome+
+                            '<br><br>';
+                projetoTag += preencherTags(projeto.tags, projeto.fotos);
+          
+                projetoTag += '<br><br><img class="activator" src="imagem/like.png" style="width: 20px; height: 20px;"> <span class="blue-text darken-4" style="margin-left: 3px; font-size: 15px; font-weight: bold;">'+projeto.curtidas+'</span>'+
+                            '  <div class="chip right"><img src="imagem/usuario/'+projeto.fotoAutor+'" alt="foto">'+projeto.autor+'</div></span>'+
+                            '</div>'+
+                            '<div class="card-action blue darken-4 center">'+
+                                '<a href="#" class="center white-text">CARREGAR</a>'+
+                            '</div>'+
+                        '</div>'+
+                        '</section>';
+
+                $("#listaProjetos").append(projetoTag);
+
+                });
+        } 
+    });  
 }
 
 carregarItens(0);
