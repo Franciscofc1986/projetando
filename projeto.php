@@ -23,11 +23,11 @@
 <body class="grey lighten-4">
     <header>
         <nav class="z-depth-5">
-            <a href="#" data-activates="slide-out" class="button-collapse menu-1 show-on-large"><i class="material-icons">menu</i></a>
+            <a href="" data-activates="slide-out" class="button-collapse menu-1 show-on-large"><i class="material-icons">menu</i></a>
             <div class="nav-wrapper light-blue darken-3">
                 <div class="container">
                     <img src="imagem/logo.png" style="width: 40px; height: 40px; margin-top: 10px;" alt="imagem">
-                    <a href="#" style="margin-left: 10px;" class="brand-logo title-1">Projetando</a>
+                    <a href="index.php" style="margin-left: 10px;" class="brand-logo title-1">Projetando</a>
                 </div>
             </div>
         </nav>
@@ -74,9 +74,6 @@
                     <div class="card z-depth-3" style="padding: 20px;">
                         <div id="dificuldadeTecnica">
                         </div>
-                        <i class="material-icons green-text left">mood</i>
-                        <i class="material-icons red-text right">mood_bad</i>
-                        <br>
                         <br>
                         <div id="listaAlertas">
                         </div>
@@ -84,13 +81,13 @@
                     <br>
                     <ul class="tabs grey darken-3 z-depth-5">
                         <li class="tab col s4">
-                            <a href="#test1" class="active grey-text tooltipped" data-position="bottom" data-tooltip="Video"><i class="material-icons icons_menu white-text">play_circle_filled</i></a>
+                            <a href="#test1" class="active grey-text" ><i class="material-icons icons_menu white-text">play_circle_filled</i></a>
                         </li>
-                        <li class="tab col s2"><a href="#test2" class="tooltipped" data-position="bottom" data-tooltip="Materiais"><i class="material-icons icons_menu white-text">assignment</i></a></li>
-                        <li class="tab col s2"><a href="#test3" class="tooltipped" data-position="bottom" data-tooltip="Passos"><i class="material-icons icons_menu white-text">format_list_numbered</i></a></li>
-                        <li class="tab col s2"><a href="#test4" class="tooltipped" data-position="bottom" data-tooltip="Custo"><i class="material-icons icons_menu white-text">monetization_on</i></a></li>
+                        <li class="tab col s2"><a href="#test2"><i class="material-icons icons_menu white-text">assignment</i></a></li>
+                        <li class="tab col s2"><a href="#test3"><i class="material-icons icons_menu white-text">format_list_numbered</i></a></li>
+                        <li class="tab col s2"><a href="#test4"><i class="material-icons icons_menu white-text">monetization_on</i></a></li>
                         <li class="tab col s2">
-                            <a href="#test5" class="tooltipped" data-position="bottom" data-tooltip="Comentarios" onclick="carregarComentarios()"><i class="material-icons icons_menu white-text">sms</i></a>
+                            <a href="#test5" onclick="carregarComentarios()"><i class="material-icons icons_menu white-text">sms</i></a>
                         </li>
                     </ul>
                     <div id="test1" class="col s12 ">
@@ -109,14 +106,41 @@
                         </ul>
                         <br>
                          <ul class="collection with-header" id="ferramentas">
-                        </ul>
+                         </ul>
                     </div>
                     <div id="test3">
                         <br>
                         <h5 class="center">Passo-a-passo</h5>
                         <br>
-                          <ul class="collapsible" data-collapsible="expandable" id="passoapasso">
-                        </ul>
+                            <ul class = "collection" id="passoapasso">         
+                                <li class = "collection-item avatar">
+                                    <i class="material-icons circle light-blue darken-4" id="icone_passo1" style="font-size:20px;">forward</i>
+                                    <span class = "title grey-text darken-3" style="font-size:14px; font-weight: bold;">1º Passo</span>
+                                    <p>HTML5 is the next major revision of the HTML standard superseding
+                                    HTML 4.01, XHTML 1.0, and XHTML 1.1.<br/> HTML5 is a standard for
+                                    structuring and presenting content on the World Wide Web.</p>
+                                    <i id="passo1" class="secondary-content material-icons grey-text" onclick="mudarPasso('passo1')">
+                                    check_box</i>
+                                </li>
+                                <li class = "collection-item avatar">
+                                    <i class = "material-icons circle light-blue darken-4" id="icone_passo2" style="font-size:20px;">forward</i>
+                                    <span class = "title grey-text darken-3" style="font-size:14px; font-weight: bold;">2º Passo</span>
+                                    <p>HTML5 is the next major revision of the HTML standard superseding
+                                    HTML 4.01, XHTML 1.0, and XHTML 1.1.<br/> HTML5 is a standard for
+                                    structuring and presenting content on the World Wide Web.</p>
+                                    <i id="passo2" class="secondary-content material-icons grey-text" onclick="mudarPasso('passo2')">
+                                    check_box</i>
+                                </li>
+                                <li class = "collection-item avatar">
+                                    <i class = "material-icons circle light-blue darken-4" id="icone_passo3"style="font-size:20px;">forward</i>
+                                    <span class = "title grey-text darken-3" style="font-size:14px; font-weight: bold;">3º Passo</span>
+                                    <p>HTML5 is the next major revision of the HTML standard superseding
+                                    HTML 4.01, XHTML 1.0, and XHTML 1.1.<br/> HTML5 is a standard for
+                                    structuring and presenting content on the World Wide Web.</p>
+                                    <i id="passo3" class="secondary-content material-icons grey-text" onclick="mudarPasso('passo3')">
+                                    check_box</i>
+                                </li>
+                            </ul>
                     </div>
                     <div id="test4">
                         <br>
@@ -157,24 +181,21 @@
             </div>
         </div>
     </div>
-    <footer class="page-footer grey darken-3">
-        <div class="container">
+      <footer class="page-footer grey darken-3">
+         <div class="container">
             <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">Projetando</h5>
-                    <p class="grey-text text-lighten-4">Todo o conteúdo desse site é publico e deve ser utilizado com responsabilidade.</p>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                </div>
+               <div class="col s12">
+                  <h5 class="white-text">Projetando</h5>
+                  <p class="grey-text text-lighten-4">Todo o conteúdo desse site é publico e deve ser utilizado com responsabilidade.</p>
+               </div>
             </div>
-        </div>
-        <div class="footer-copyright">
+         </div>
+         <div class="footer-copyright">
             <div class="container">
-                © 2018 Copyright Text
-                <a class="grey-text text-lighten-4 right" href="#!">Sobre o projeto</a>
+               © 2018 Copyright Text
             </div>
-        </div>
-    </footer>
+         </div>
+      </footer>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>

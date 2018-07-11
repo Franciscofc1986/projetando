@@ -14,11 +14,11 @@
    <body class="grey lighten-4">
       <header>
          <nav class="z-depth-5">
-            <a href="#" data-activates="slide-out" class="button-collapse menu-1 show-on-large"><i class="material-icons">menu</i></a>
+            <a href="" data-activates="slide-out" class="button-collapse menu-1 show-on-large"><i class="material-icons">menu</i></a>
             <div class="nav-wrapper light-blue darken-3">
                <div class="container">
                   <img src="imagem/logo.png" style="width: 40px; height: 40px; margin-top: 10px;" alt="imagem"> 
-                  <a href="#" style="margin-left: 10px;" class="brand-logo title-1">Projetando</a>
+                  <a href="index.php" style="margin-left: 10px;" class="brand-logo title-1">Projetando</a>
                </div>
             </div>
          </nav>
@@ -89,18 +89,15 @@
       <footer class="page-footer grey darken-3">
          <div class="container">
             <div class="row">
-               <div class="col l6 s12">
+               <div class="col s12">
                   <h5 class="white-text">Projetando</h5>
                   <p class="grey-text text-lighten-4">Todo o conteúdo desse site é publico e deve ser utilizado com responsabilidade.</p>
-               </div>
-               <div class="col l4 offset-l2 s12">
                </div>
             </div>
          </div>
          <div class="footer-copyright">
             <div class="container">
                © 2018 Copyright Text
-               <a class="grey-text text-lighten-4 right" href="#!">Sobre o projeto</a>
             </div>
          </div>
       </footer>

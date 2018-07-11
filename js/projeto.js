@@ -2,6 +2,19 @@
 var urlBase = "http://localhost";
 var CodigoIDProjeto = null;
 
+function mudarPasso(idPasso){
+
+    var elementoPasso = "#"+idPasso;
+    var iconePasso = "#icone_"+idPasso;
+
+    if($(elementoPasso).hasClass("green-text")){
+        $(elementoPasso).removeClass( "green-text" ).addClass( "grey-text" );
+        $(iconePasso).removeClass( "green" ).addClass( "light-blue darken-4" );
+    }else{
+        $(elementoPasso).removeClass( "grey-text" ).addClass( "green-text" );
+        $(iconePasso).removeClass( "light-blue darken-4" ).addClass( "green" );
+    }
+}
 
 function carregarComentarios() {
     
@@ -132,9 +145,18 @@ function gerarPassoAPassoHtml(passos){
 
     var passosHtml = '';
 
+    var contador = 1;
     $.each(passos, function (indice, passo) {
-            passosHtml += '<li><div class="collapsible-header active white-text grey darken-3"><i class="material-icons yellow-text">star_border</i>'+indice+'</div>'+
-            '<div class="collapsible-body"><span>'+passo+'</span></div></li>';
+
+            var variavelDoIcone = "'passo"+contador+"'";
+            passosHtml += '<li class = "collection-item avatar">'+
+            '<i class="material-icons circle light-blue darken-4" id="icone_passo'+contador+'" style="font-size:20px;">forward</i>'+
+            '<span class = "title grey-text darken-3" style="font-size:14px; font-weight: bold;">'+indice+'</span>'+
+            '<p>'+passo+'</p>'+
+            '<i id="passo'+contador+'" class="secondary-content material-icons grey-text" style="cursor: pointer;" onclick="mudarPasso('+variavelDoIcone+')">'+
+            'check_box</i></li>';
+
+            contador++;
     });
 
     return passosHtml;

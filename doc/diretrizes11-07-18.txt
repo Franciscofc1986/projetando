@@ -1,0 +1,19 @@
+ - Remover toast explicativo do menu de detalhes do projeto.
+ - Mudar estrutura para exibir o passo-a-passo. Hj esta oculto.
+ - Implementar o método para enviar o comentário e ja atualizar a pagina.
+ - criar a primeira aba para exibir a dificuldade técnica do projeto e os alertas.
+ - Remover carinha triste na dificuldade tecnica.
+
+ - Criar paginas de administrador para criação, edição e deleção de projetos, grupos, relação projeto grupo,...
+
+ - Criar pagina de login e cadastrar usuário.
+ - Implementar estrutura para logar e manter hash((usuário+senha)base64) para requisições restritas como enviar comentário.
+
+ - Adequar menu lateral com itens:
+ *Usuario deslogado: -Simbolo do site com nome do site - Principal, - Sobre o site, - Cadastrar usuário, - Logar
+ *Usuario logado: - Foto do usuário, - nome do usuário, - email, - Principal, - Sobre o site, - Projetos que curti, - Deslogar
+
+ * Usuario admin - Usuario logado.*, criar projeto, editar projeto, deletar projeto, criar grupo, editar grupo e deletar grupo, 
+criar/editar/remover relaçao grupo grupo e grupo projeto.
+
+ - organizar codigo para ser replicado em outros projetos (ataxon e projetando) incluindo oganizar estilos css.
