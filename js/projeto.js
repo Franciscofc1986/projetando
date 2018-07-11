@@ -2,22 +2,73 @@
 var urlBase = "http://localhost";
 var CodigoIDProjeto = null;
 
-function mudarPasso(idPasso){
+function comentar(idUsuario, idProjeto, mensagem, ordem) {
+    // Exemplo de requisição POST
+    var ajax = new XMLHttpRequest();
 
-    var elementoPasso = "#"+idPasso;
-    var iconePasso = "#icone_"+idPasso;
+    // Seta tipo de requisição: Post e a URL da API
+    var url = urlBase + "/api.php/tbcomentario/";
 
-    if($(elementoPasso).hasClass("green-text")){
-        $(elementoPasso).removeClass( "green-text" ).addClass( "grey-text" );
-        $(iconePasso).removeClass( "green" ).addClass( "light-blue darken-4" );
-    }else{
-        $(elementoPasso).removeClass( "grey-text" ).addClass( "green-text" );
-        $(iconePasso).removeClass( "light-blue darken-4" ).addClass( "green" );
+    ajax.open("POST", url, true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Seta paramêtros da requisição e envia a requisição
+    var parametros = "mensagem=" + mensagem +"&ordem=" + ordem +"&idUsuario=" + idUsuario + "&idProjeto=" + idProjeto;
+    ajax.send(parametros);
+
+    // Cria um evento para receber o retorno.
+    ajax.onreadystatechange = function () {
+
+        // Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
+        if (ajax.readyState == 4 && ajax.status == 200) {
+
+            var data = ajax.responseText;
+
+            // Retorno do Ajax
+            console.log(data);
+        }
+    }
+
+    window.location.reload();
+}
+
+function enviarComentario() {
+
+    if (typeof (Storage) !== "undefined") {
+
+        sessionStorage.setItem("idUsuarioLogado", 1); //ESSE CODIGO VAI SAIR ****************************
+
+        var usuarioLogado = sessionStorage.idUsuarioLogado;
+        var textoComentario = $('#campoComentario').val();
+        if (usuarioLogado) {
+            var proximaOrdem = Number(sessionStorage.ordemComentario) + 1;
+
+            comentar(usuarioLogado, CodigoIDProjeto, textoComentario, proximaOrdem);
+
+        } else {
+            alert("É necessário logar para enviar um comentário.");
+        }
+    } else {
+        alert("Esse navegador não suporta armazenamento.");
+    }
+}
+
+function mudarPasso(idPasso) {
+
+    var elementoPasso = "#" + idPasso;
+    var iconePasso = "#icone_" + idPasso;
+
+    if ($(elementoPasso).hasClass("green-text")) {
+        $(elementoPasso).removeClass("green-text").addClass("grey-text");
+        $(iconePasso).removeClass("green").addClass("light-blue darken-4");
+    } else {
+        $(elementoPasso).removeClass("grey-text").addClass("green-text");
+        $(iconePasso).removeClass("light-blue darken-4").addClass("green");
     }
 }
 
 function carregarComentarios() {
-    
+
     var url = urlBase + "/api.php/filtro/comentario_completo/" + CodigoIDProjeto;
 
     $.ajax({
@@ -37,17 +88,23 @@ function carregarComentarios() {
 
             $('#listaDeComentarios').html(gerarListaComentariosHtml(retorno));
 
-            
+
         }
     });
 }
 
-function gerarListaComentariosHtml(listaComentarioObj){
+function gerarListaComentariosHtml(listaComentarioObj) {
     var comentariosHtml = '';
 
     $.each(listaComentarioObj, function (i, comentario) {
-            comentariosHtml += '<li class="collection-item avatar"><img src="imagem/usuario/'+comentario.foto+'" alt="" class="circle">'+
-            '<span class="title" style="font-weight: bold;">'+comentario.nome+'</span><p>'+comentario.mensagem+'</p></li>';
+        comentariosHtml += '<li class="collection-item avatar"><img src="imagem/usuario/' + comentario.foto + '" alt="" class="circle">' +
+            '<span class="title" style="font-weight: bold;">' + comentario.nome + '</span><p>' + comentario.mensagem + '</p></li>';
+
+        if (typeof (Storage) !== "undefined") {
+            sessionStorage.setItem("ordemComentario", comentario.ordem);
+        }
+
+
     });
 
     return comentariosHtml;
@@ -64,18 +121,18 @@ function curtir(idUsuario, idProjeto) {
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // Seta paramêtros da requisição e envia a requisição
-    var parametros = "idUsuario="+idUsuario+"&idProjeto="+idProjeto;
+    var parametros = "idUsuario=" + idUsuario + "&idProjeto=" + idProjeto;
     ajax.send(parametros);
 
     // Cria um evento para receber o retorno.
-    ajax.onreadystatechange = function() {
-    
-    // Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
+    ajax.onreadystatechange = function () {
+
+        // Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
         if (ajax.readyState == 4 && ajax.status == 200) {
-        
+
             var data = ajax.responseText;
-            
-        // Retorno do Ajax
+
+            // Retorno do Ajax
             console.log(data);
         }
     }
@@ -107,15 +164,15 @@ function carregarProjeto(idProjeto) {
             console.log(custosObjeto);
             var materiaisObjeto = JSON.parse(retorno[0].materiaisJson)
             console.log(materiaisObjeto);
-             var passosObjeto = JSON.parse(retorno[0].passosJson)
+            var passosObjeto = JSON.parse(retorno[0].passosJson)
             console.log(passosObjeto);
             $('#tituloProjeto').html(retorno[0].nome);
             var htmlCurtidas = '<a href="" class="blue-text" onclick="curtir(1,' + idProjeto + ')"><img src="imagem/like.png" id="qtdCurtidas" style="display: inline-flex; vertical-align: top; width: 20px; height: 20px; margin-right: 5px">' + retorno[0].curtidas + '</a>';
             $('#qtdCurtidas').html(htmlCurtidas);
             $('#listaAlertas').html(gerarAlertasHtml(dificuldadeObjeto.alertas));
-            
+
             $('#dificuldadeTecnica').html(gerarDificuldadeHtml(dificuldadeObjeto.dificuldade));
-            var videoHtml ='<iframe width="853" height="480" src="//www.youtube.com/embed/'+retorno[0].codigoVideo+'" frameborder="0" allowfullscreen></iframe>';
+            var videoHtml = '<iframe width="853" height="480" src="//www.youtube.com/embed/' + retorno[0].codigoVideo + '" frameborder="0" allowfullscreen></iframe>';
             $('#videoProjeto').html(videoHtml);
 
             $('#materiais').html(gerarListaMateriaisHtml(materiaisObjeto.materiais));
@@ -130,55 +187,55 @@ function carregarProjeto(idProjeto) {
 }
 
 
-function gerarCustoHtml(custoDosItens){
+function gerarCustoHtml(custoDosItens) {
     var custosHtml = '';
 
     $.each(custoDosItens, function (item, custo) {
-            if(item != "TOTAL") custosHtml += '<tr><td>'+item+'</td><td>R$'+custo+'</td></tr>';
-            else custosHtml += '<tr class="grey"><td>'+item+'</td><td>R$'+custo+'</td></tr>';
+        if (item != "TOTAL") custosHtml += '<tr><td>' + item + '</td><td>R$' + custo + '</td></tr>';
+        else custosHtml += '<tr class="grey"><td>' + item + '</td><td>R$' + custo + '</td></tr>';
     });
 
     return custosHtml;
 }
 
-function gerarPassoAPassoHtml(passos){
+function gerarPassoAPassoHtml(passos) {
 
     var passosHtml = '';
 
     var contador = 1;
     $.each(passos, function (indice, passo) {
 
-            var variavelDoIcone = "'passo"+contador+"'";
-            passosHtml += '<li class = "collection-item avatar">'+
-            '<i class="material-icons circle light-blue darken-4" id="icone_passo'+contador+'" style="font-size:20px;">forward</i>'+
-            '<span class = "title grey-text darken-3" style="font-size:14px; font-weight: bold;">'+indice+'</span>'+
-            '<p>'+passo+'</p>'+
-            '<i id="passo'+contador+'" class="secondary-content material-icons grey-text" style="cursor: pointer;" onclick="mudarPasso('+variavelDoIcone+')">'+
+        var variavelDoIcone = "'passo" + contador + "'";
+        passosHtml += '<li class = "collection-item avatar">' +
+            '<i class="material-icons circle light-blue darken-4" id="icone_passo' + contador + '" style="font-size:20px;">forward</i>' +
+            '<span class = "title grey-text darken-3" style="font-size:14px; font-weight: bold;">' + indice + '</span>' +
+            '<p>' + passo + '</p>' +
+            '<i id="passo' + contador + '" class="secondary-content material-icons grey-text" style="cursor: pointer;" onclick="mudarPasso(' + variavelDoIcone + ')">' +
             'check_box</i></li>';
 
-            contador++;
+        contador++;
     });
 
     return passosHtml;
 }
 
-function gerarListaFerramentasHtml(ferramentas){
+function gerarListaFerramentasHtml(ferramentas) {
 
     var listaFerramentasHtml = '<li class="collection-header"><h5><i class="material-icons icone_titulo">build</i>Ferramentas</h5></li>';
 
     $.each(ferramentas, function (indice, ferramenta) {
-            listaFerramentasHtml += '<li class="collection-item">'+ferramenta+'</li>';
+        listaFerramentasHtml += '<li class="collection-item">' + ferramenta + '</li>';
     });
 
     return listaFerramentasHtml;
 }
 
-function gerarListaMateriaisHtml(materiais){
+function gerarListaMateriaisHtml(materiais) {
 
     var listaMateriaisHtml = '<li class="collection-header"><h5><i class="material-icons icone_titulo">local_grocery_store</i> Materiais</h5></li>';
 
     $.each(materiais, function (unidade, tipoItem) {
-            listaMateriaisHtml += '<li class="collection-item"><span class="font-dez">'+unidade+'</span> <p>'+tipoItem+'</p></li>';
+        listaMateriaisHtml += '<li class="collection-item"><span class="font-dez">' + unidade + '</span> <p>' + tipoItem + '</p></li>';
     });
 
     return listaMateriaisHtml;
@@ -190,44 +247,44 @@ function gerarDificuldadeHtml(valorDificuldade) {
     var dificuldadeTecnicaHtml = "";
     switch (valorDificuldade) {
         case 10:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress light-green lighten-1">'+
-            '<div class="determinate green" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress light-green lighten-1">' +
+                '<div class="determinate green" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
         case 20:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress light-green lighten-2">'+
-            '<div class="determinate green lighten-1" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress light-green lighten-2">' +
+                '<div class="determinate green lighten-1" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
         case 30:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress light-green lighten-3">'+
-            '<div class="determinate green lighten-2" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress light-green lighten-3">' +
+                '<div class="determinate green lighten-2" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
         case 40:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress light-green lighten-4">'+
-            '<div class="determinate green lighten-3" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress light-green lighten-4">' +
+                '<div class="determinate green lighten-3" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
         case 50:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress light-green lighten-5">'+
-            '<div class="determinate green lighten-4" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress light-green lighten-5">' +
+                '<div class="determinate green lighten-4" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
         case 60:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress orange lighten-5">'+
-            '<div class="determinate green lighten-5" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress orange lighten-5">' +
+                '<div class="determinate green lighten-5" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
         case 70:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress red lighten-5">'+
-            '<div class="determinate red lighten-3" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress red lighten-5">' +
+                '<div class="determinate red lighten-3" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
         case 80:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress red lighten-4">'+
-            '<div class="determinate red lighten-2" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress red lighten-4">' +
+                '<div class="determinate red lighten-2" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
         case 90:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress red lighten-3">'+
-            '<div class="determinate red lighten-1" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress red lighten-3">' +
+                '<div class="determinate red lighten-1" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
         case 100:
-            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: '+valorDificuldade+'%<div class="progress red">'+
-            '<div class="determinate red" style="width: '+valorDificuldade+'%"></div></div>';
+            dificuldadeTecnicaHtml = 'Dificuldade técnica do projeto: ' + valorDificuldade + '%<div class="progress red">' +
+                '<div class="determinate red" style="width: ' + valorDificuldade + '%"></div></div>';
             break;
     }
 

@@ -70,27 +70,33 @@
                     <div class="right z-depth-3" id="qtdCurtidas">
                     </div>
                     <br>
-                    <br>
-                    <div class="card z-depth-3" style="padding: 20px;">
-                        <div id="dificuldadeTecnica">
-                        </div>
-                        <br>
-                        <div id="listaAlertas">
-                        </div>
-                    </div>
-                    <br>
+                    
                     <ul class="tabs grey darken-3 z-depth-5">
-                        <li class="tab col s4">
-                            <a href="#test1" class="active grey-text" ><i class="material-icons icons_menu white-text">play_circle_filled</i></a>
-                        </li>
-                        <li class="tab col s2"><a href="#test2"><i class="material-icons icons_menu white-text">assignment</i></a></li>
-                        <li class="tab col s2"><a href="#test3"><i class="material-icons icons_menu white-text">format_list_numbered</i></a></li>
-                        <li class="tab col s2"><a href="#test4"><i class="material-icons icons_menu white-text">monetization_on</i></a></li>
+                        <li class="tab col s2"><a href="#test1" class="active"><i class="material-icons icons_menu white-text">info</i></a></li>
                         <li class="tab col s2">
-                            <a href="#test5" onclick="carregarComentarios()"><i class="material-icons icons_menu white-text">sms</i></a>
+                            <a href="#test2" class="active grey-text" ><i class="material-icons icons_menu white-text">play_circle_filled</i></a>
+                        </li>
+                        <li class="tab col s2"><a href="#test3"><i class="material-icons icons_menu white-text">assignment</i></a></li>
+                        <li class="tab col s2"><a href="#test4"><i class="material-icons icons_menu white-text">format_list_numbered</i></a></li>
+                        <li class="tab col s2"><a href="#test5"><i class="material-icons icons_menu white-text">monetization_on</i></a></li>
+                        <li class="tab col s2">
+                            <a href="#test6" onclick="carregarComentarios()"><i class="material-icons icons_menu white-text">sms</i></a>
                         </li>
                     </ul>
                     <div id="test1" class="col s12 ">
+                        <br>
+                        <h5 class="center">Detalhes do Projeto</h5>
+                        <br>
+                        <div class="card z-depth-3" style="padding: 20px;">
+                            <div id="dificuldadeTecnica">
+                            </div>
+                            <br>
+                            <div id="listaAlertas">
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div id="test2" class="col s12 ">
                         <br>
                         <h5 class="center">Vídeo</h5>
                         <br>
@@ -98,7 +104,7 @@
                             
                         </div>
                     </div>
-                    <div id="test2">
+                    <div id="test3">
                         <br>
                         <h5 class="center">Materiais utilizados</h5>
                         <br>
@@ -108,41 +114,14 @@
                          <ul class="collection with-header" id="ferramentas">
                          </ul>
                     </div>
-                    <div id="test3">
+                    <div id="test4">
                         <br>
                         <h5 class="center">Passo-a-passo</h5>
                         <br>
                             <ul class = "collection" id="passoapasso">         
-                                <li class = "collection-item avatar">
-                                    <i class="material-icons circle light-blue darken-4" id="icone_passo1" style="font-size:20px;">forward</i>
-                                    <span class = "title grey-text darken-3" style="font-size:14px; font-weight: bold;">1º Passo</span>
-                                    <p>HTML5 is the next major revision of the HTML standard superseding
-                                    HTML 4.01, XHTML 1.0, and XHTML 1.1.<br/> HTML5 is a standard for
-                                    structuring and presenting content on the World Wide Web.</p>
-                                    <i id="passo1" class="secondary-content material-icons grey-text" onclick="mudarPasso('passo1')">
-                                    check_box</i>
-                                </li>
-                                <li class = "collection-item avatar">
-                                    <i class = "material-icons circle light-blue darken-4" id="icone_passo2" style="font-size:20px;">forward</i>
-                                    <span class = "title grey-text darken-3" style="font-size:14px; font-weight: bold;">2º Passo</span>
-                                    <p>HTML5 is the next major revision of the HTML standard superseding
-                                    HTML 4.01, XHTML 1.0, and XHTML 1.1.<br/> HTML5 is a standard for
-                                    structuring and presenting content on the World Wide Web.</p>
-                                    <i id="passo2" class="secondary-content material-icons grey-text" onclick="mudarPasso('passo2')">
-                                    check_box</i>
-                                </li>
-                                <li class = "collection-item avatar">
-                                    <i class = "material-icons circle light-blue darken-4" id="icone_passo3"style="font-size:20px;">forward</i>
-                                    <span class = "title grey-text darken-3" style="font-size:14px; font-weight: bold;">3º Passo</span>
-                                    <p>HTML5 is the next major revision of the HTML standard superseding
-                                    HTML 4.01, XHTML 1.0, and XHTML 1.1.<br/> HTML5 is a standard for
-                                    structuring and presenting content on the World Wide Web.</p>
-                                    <i id="passo3" class="secondary-content material-icons grey-text" onclick="mudarPasso('passo3')">
-                                    check_box</i>
-                                </li>
                             </ul>
                     </div>
-                    <div id="test4">
+                    <div id="test5">
                         <br>
                         <h5 class="center">Custos</h5>
                         <br>
@@ -158,19 +137,19 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="test5">
+                    <div id="test6">
                         <br>
                         <h5 class="center">Comentários</h5>
                         <br>
                         <ul class="collection" id="listaDeComentarios">
                         </ul>
                         <br>
-
-                        <form >
-                            <div class="input-field col s12">
-                                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                <label for="textarea1" >Comentário</label>
-                                <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Enviar
+                            <div class="col s12 center">
+                                <div class="input-field col s12">
+                                    <textarea id="campoComentario" class="materialize-textarea"></textarea>
+                                    <label for="campoComentario">Comentário</label>
+                                </div>
+                                <button class="btn waves-effect waves-light light-blue darken-4" onclick="enviarComentario()" >Enviar
                                     <i class="material-icons right">send</i>
                                 </button>
                                 <br>
