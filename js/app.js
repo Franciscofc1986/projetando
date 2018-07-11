@@ -4,24 +4,6 @@ var urlBase = "http://localhost";
 var historicoGrupo = [];
 var historicoNomeGrupo = [];
 
-$('.menu-1').sideNav({
-    menuWidth: 300, // Default is 300
-    edge: 'left', // Choose the horizontal origin
-    closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    draggable: true, // Choose whether you can drag to open on touch screens,
-    onOpen: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is opened
-    onClose: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is closed
-});
-
-$('.menu-2').sideNav({
-    menuWidth: 300, // Default is 300
-    edge: 'right', // Choose the horizontal origin
-    closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    draggable: true, // Choose whether you can drag to open on touch screens,
-    onOpen: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is opened
-    onClose: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is closed
-});
-
 function carregarItens(idGrupo, voltou=false, nomeGrupo=""){
     var url = urlBase + "/api.php/filtro/grupos_no_grupo/"+idGrupo;
     
@@ -133,6 +115,9 @@ function carregarProjetos(idGrupo){
             $("#listaProjetos").html("O servidor não conseguiu processar o pedido.");
         },
         success: function(retorno) {
+            if(retorno.length > 0) $("#tituloProjeto").html("Projetos desse grupo");
+            else $("#tituloProjeto").html("");
+
             $("#listaProjetos").html("");
                 $.each(retorno,function(i, projeto){
 
@@ -140,19 +125,20 @@ function carregarProjetos(idGrupo){
                var projetoTag = '<section class="col s12 m6 l6">'+
                         '<div class="card z-depth-5">'+
                             '<div class="card-image waves-effect waves-block waves-light">'+
-                            '<img class="activator" src="https://img.youtube.com/vi/'+projeto.codigoVideo+'/0.jpg">'+
+                            '<img src="https://img.youtube.com/vi/'+projeto.codigoVideo+'/0.jpg">'+
                             '</div>'+
                             '<div class="card-content">'+
-                            '<span class="card-title activator grey-text text-darken-4" >'+projeto.nome+
+                            '<span class="card-title grey-text text-darken-4" >'+projeto.nome+
                             '<br><br>';
                 projetoTag += preencherTags(projeto.tags, projeto.fotos);
           
-                projetoTag += '<br><br><img class="activator" src="imagem/like.png" style="width: 20px; height: 20px;"> <span class="blue-text darken-4" style="margin-left: 3px; font-size: 15px; font-weight: bold;">'+projeto.curtidas+'</span>'+
-                            '  <div class="chip right"><img src="imagem/usuario/'+projeto.fotoAutor+'" alt="foto">'+projeto.autor+'</div></span>'+
-                            '</div>'+
-                            '<div class="card-action blue darken-4 center">'+
-                                '<a href="#" class="center white-text">CARREGAR</a>'+
-                            '</div>'+
+                projetoTag += '<br><br><img src="imagem/like.png" style="width: 20px; height: 20px;">'+
+                            '<span class="blue-text darken-4" style="margin-left: 3px; font-size: 15px; font-weight: bold;">'+
+                            projeto.curtidas+'</span>'+
+                            '<div class="chip right"><img src="imagem/usuario/'+projeto.fotoAutor+'" alt="foto">'+projeto.autor+
+                            '</div></span></div>'+
+                            '<a href="projeto.php?projeto='+ projeto.id +'" class="center white-text">'+
+                            '<div class="card-action blue darken-4 center">CARREGAR</div></a>'+
                         '</div>'+
                         '</section>';
 

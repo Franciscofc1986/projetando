@@ -1,0 +1,40 @@
+			<div class="chip grey darken-3 white-text">			    
+			    <i class="material-icons icons_index yellow-text" style="margin-right:5px">child_care</i> 
+                            Qualquercriança faz !
+                        </div>
+                        <div class="chip grey darken-3 white-text">
+                            <i class="material-icons icons_index orange-text" style="margin-right:5px">warning</i> Tenha
+                            atenção e paciência !
+                        </div>
+                        <div class="chip grey darken-3 white-text">
+                            <i class="material-icons icons_index red-text" style="margin-right:5px">whatshot</i> Cuidado
+                            com o fogo !
+                        </div>
+                        <div class="chip grey darken-3 white-text">
+                            <i class="material-icons icons_index blue-text" style="margin-right:5px">pan_tool</i> Atenção
+                            aos trabalhos manuais !
+                        </div>
+                        <div class="chip grey darken-3 white-text">
+                            <i class="material-icons icons_index red-text" style="margin-right:5px">person_add</i> Necessita
+                            da presença de um adulto !
+                        </div>
+                        <div class="chip grey darken-3 white-text">
+                            <i class="material-icons icons_index yellow-text" style="margin-right:5px">power</i> Cuidado
+                            com o choque !
+                        </div>
+                        <div class="chip grey darken-3 white-text">
+                            <i class="material-icons icons_index white-text" style="margin-right:5px">remove_red_eye</i>                            
+                            Atenção aos detalhes de execução !
+                        </div>
+                        <div class="chip grey darken-3 white-text">
+                            <i class="material-icons icons_index orange-text" style="margin-right:5px">build</i> Exige prática
+                            com ferramentas !
+                        </div>
+                        <div class="chip grey darken-3 white-text">
+                            <i class="material-icons icons_index green-text" style="margin-right:5px">nature_people</i> Deve
+                            ser executado ao ar livre !
+                        </div>
+                        <div class="chip grey darken-3 white-text">
+                            <i class="material-icons icons_index deep-purple-text" style="margin-right:5px">color_lens</i>                            
+                            Exige habilidades artisticas !
+                        </div>

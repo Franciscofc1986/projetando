@@ -17,7 +17,7 @@
 	}
 
 	$request = explode('/', trim($_SERVER["PATH_INFO"],'/'));
-	$table = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
+	          $table = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
 	$keyId = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
 	
 	
@@ -59,6 +59,30 @@
 							   "AND tbtagprojeto.idTag = tbtag.id ".
 							   "AND tbtag.nome = '$idRegistro' ".
 							   "GROUP BY tbprojeto.nome";
+						break;
+					case 'projeto_completo': //retorna os projetos que possuem a tag x
+						$sql = "select tbprojeto.*, tbusuario.nome as autor, tbusuario.foto as fotoAutor, tbusuario.email as emailAutor, ". 
+								"(select count(*) from tbcurtidas where idProjeto = tbprojeto.id) as curtidas, ". 
+								"(SELECT group_concat( tbtag.nome ) as nomes ".
+								"FROM tbtag, tbtagprojeto ".
+								"WHERE tbtagprojeto.idProjeto = tbprojeto.id ". 
+								"AND tbtag.id = tbtagprojeto.idTag ".
+								"ORDER BY tbtag.nome) as tags, ".
+								"(SELECT group_concat( tbtag.foto ) as fotos ".
+								"FROM tbtag, tbtagprojeto ".
+								"WHERE tbtagprojeto.idProjeto = tbprojeto.id ". 
+								"AND tbtag.id = tbtagprojeto.idTag ".
+								"ORDER BY tbtag.nome) as fotos ".
+								"FROM tbprojeto, tbusuario ".
+								"WHERE tbprojeto.id = $idRegistro ". 
+								"AND tbusuario.id = tbprojeto.idUsuario ";
+						break;
+					case 'comentario_completo': //retorna os projetos que possuem a tag x
+						$sql = "select tbcomentario.*, tbusuario.foto, tbusuario.nome ".
+								"from tbcomentario, tbusuario ".
+								"where tbcomentario.idProjeto = $idRegistro ".
+								"and tbusuario.id = tbcomentario.idUsuario ". 
+								"order by tbcomentario.ordem";
 						break;
 				}
 			}

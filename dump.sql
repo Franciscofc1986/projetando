@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 08-Jul-2018 às 22:14
+-- Generation Time: 10-Jul-2018 às 00:21
 -- Versão do servidor: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `tbgrupo` (
 
 INSERT INTO `tbgrupo` (`id`, `nome`, `imagem`) VALUES
 (1, 'Grupo 1', NULL),
-(2, 'Grupo 2', 'img_1.jpeg'),
+(2, 'Aquaponia', 'img_1.jpeg'),
 (3, 'Grupo 3', NULL),
 (4, 'Grupo 4', NULL),
 (5, 'Grupo 5', NULL);
@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `tbprojeto` (
   `codigoVideo` varchar(1000) DEFAULT NULL,
   `passosJson` text,
   `custosJson` text,
+  `dificuldadesJson` text,
   `materiaisJson` text,
   `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -194,9 +195,9 @@ CREATE TABLE IF NOT EXISTS `tbtag` (
 --
 
 INSERT INTO `tbtag` (`id`, `nome`, `foto`) VALUES
-(1, 'Madeira', NULL),
+(1, 'Madeira', 'madeira.jpg'),
 (2, 'Artesanato', 'artesanato.jpg'),
-(3, 'Papelão', NULL);
+(3, 'Papelão', 'papelao.jpg');
 
 -- --------------------------------------------------------
 

@@ -1,0 +1,28 @@
+Qualquer criança faz ! child_care yellow
+
+Necessita de atenção e paciência mas é simples ! warning orange
+
+Cuidado com fogo ! whatshot red
+
+Atenção aos trabalho manuais ! pan_tool blue
+
+Necessita da presença de um adulto ! person_add red
+
+Cuidado com o choque ! power yellow
+
+Atenção ao detalhes de execução do projeto ! remove_red_eye white
+
+Exige conhecimento prévio para o uso de algumas ferramentas ! build orange
+
+Deve ser executado ao ar livre ! nature_people green
+
+Exige habilidades artisticas ! color_lens yellow
+
+
+
+smyle
+bom mood
+ruim mood_bad
+insert_emoticon
+
+<?php if (isset($_GET["status"])) AND ($_GET["status ... - Treehouse
