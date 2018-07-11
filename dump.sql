@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 10-Jul-2018 às 00:21
+-- Generation Time: 11-Jul-2018 às 03:56
 -- Versão do servidor: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -36,7 +36,16 @@ CREATE TABLE IF NOT EXISTS `tbcomentario` (
   `idUsuario` int(11) DEFAULT NULL,
   `mensagem` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tbcomentario`
+--
+
+INSERT INTO `tbcomentario` (`id`, `idProjeto`, `ordem`, `idUsuario`, `mensagem`) VALUES
+(1, 1, 1, 1, 'Primeiro da lista porra'),
+(2, 1, 2, 1, 'Grande merda'),
+(3, 2, 1, 1, 'To sozinho aqui msm ?');
 
 -- --------------------------------------------------------
 
@@ -50,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `tbcurtidas` (
   `idUsuario` int(11) DEFAULT NULL,
   `idProjeto` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbcurtidas`
@@ -59,7 +68,28 @@ CREATE TABLE IF NOT EXISTS `tbcurtidas` (
 INSERT INTO `tbcurtidas` (`id`, `idUsuario`, `idProjeto`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 1, 2);
+(3, 1, 2),
+(4, 1, 2),
+(5, 1, 2),
+(6, 1, 2),
+(7, 1, 2),
+(8, 1, 2),
+(9, 1, 2),
+(10, 1, 2),
+(11, 1, 2),
+(12, 1, 2),
+(13, 1, 2),
+(14, 1, 2),
+(15, 1, 2),
+(16, 1, 2),
+(17, 1, 2),
+(18, 1, 2),
+(19, 1, 2),
+(20, 1, 2),
+(21, 1, 2),
+(22, 1, 2),
+(23, 1, 2),
+(24, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -172,9 +202,9 @@ CREATE TABLE IF NOT EXISTS `tbprojeto` (
 -- Extraindo dados da tabela `tbprojeto`
 --
 
-INSERT INTO `tbprojeto` (`id`, `nome`, `codigoVideo`, `passosJson`, `custosJson`, `materiaisJson`, `idUsuario`) VALUES
-(1, 'Projeto de teste', 'GHB86yxT-W8', '{\r\n \"Passo a Passo\": \r\n   {\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"Atenção\": \r\n     {\r\n      \"1º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n      \"2º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n     }\r\n   }\r\n}', '{\r\n \"Passo a Passo\": \r\n   {\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"Atenção\": \r\n     {\r\n      \"1º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n      \"2º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n     }\r\n   }\r\n}', '{\r\n \"Passo a Passo\": \r\n   {\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"Atenção\": \r\n     {\r\n      \"1º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n      \"2º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n     }\r\n   }\r\n}', 1),
-(2, 'Projeto de aquaponia', 'ymknJKeFoLY', '{\r\n \"Passo a Passo\": \r\n   {\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"Atenção\": \r\n     {\r\n      \"1º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n      \"2º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n     }\r\n   }\r\n}', '{\r\n \"Passo a Passo\": \r\n   {\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"Atenção\": \r\n     {\r\n      \"1º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n      \"2º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n     }\r\n   }\r\n}', '{\r\n \"Passo a Passo\": \r\n   {\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"Atenção\": \r\n     {\r\n      \"1º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n      \"2º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n     }\r\n   }\r\n}', 1);
+INSERT INTO `tbprojeto` (`id`, `nome`, `codigoVideo`, `passosJson`, `custosJson`, `dificuldadesJson`, `materiaisJson`, `idUsuario`) VALUES
+(1, 'Projeto de teste', 'GHB86yxT-W8', '{\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"3º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n    \"4º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n}', '{\r\n \"hábaco\": 15,\r\n \"2 x Isqueiro\": 45,\r\n \"4 x Pilhas\": 12,\r\n \"TOTAL\": 78\r\n}', '{\r\n \"dificuldade\":10,\r\n \"alertas\": [1,3,5]\r\n}', '{\r\n \"materiais\":\r\n  {\r\n   \"1cx\":\"Sabão em pó\",\r\n   \"2un\":\"isqueiro\",\r\n   \"1un\":\"cola quente\"\r\n  },\r\n  \"ferramentas\": [\"Cola-quente\", \"Martelo\", \"Espatula\"]\r\n}', 1),
+(2, 'Projeto de aquaponia', 'ymknJKeFoLY', '{\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"3º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n    \"4º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n}', '{\r\n \"hábaco\": 15,\r\n \"2 x Isqueiro\": 45,\r\n \"4 x Pilhas\": 12,\r\n \"TOTAL\": 78\r\n}', '{\r\n \"dificuldade\":70,\r\n \"alertas\": [1,2,3,4,5,8,10]\r\n}', '{\r\n \"materiais\":\r\n  {\r\n   \"1cx\":\"Sabão em pó\",\r\n   \"2un\":\"isqueiro\",\r\n   \"1un\":\"cola quente\"\r\n  },\r\n  \"ferramentas\": [\"Cola-quente\", \"Martelo\", \"Espatula\"]\r\n}', 1);
 
 -- --------------------------------------------------------
 
