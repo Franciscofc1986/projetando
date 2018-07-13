@@ -84,6 +84,11 @@
 								"and tbusuario.id = tbcomentario.idUsuario ". 
 								"order by tbcomentario.ordem";
 						break;
+					case 'logar': //retorna os projetos que possuem a tag x
+						$sql = "select tbusuario.* ".
+								"from tbusuario ".
+								"where tbusuario.hashSenha = $idRegistro ";
+						break;
 				}
 			}
 			else{

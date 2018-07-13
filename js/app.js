@@ -4,6 +4,8 @@ var urlBase = "http://localhost";
 var historicoGrupo = [];
 var historicoNomeGrupo = [];
 
+
+
 function carregarItens(idGrupo, voltou=false, nomeGrupo=""){
     var url = urlBase + "/api.php/filtro/grupos_no_grupo/"+idGrupo;
     

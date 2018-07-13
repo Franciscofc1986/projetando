@@ -1,10 +1,10 @@
 OK - Remover toast explicativo do menu de detalhes do projeto.
 OK - Mudar estrutura para exibir o passo-a-passo. Hj esta oculto.
 OK - Remover carinha triste na dificuldade tecnica.
- - Implementar o método para enviar o comentário e ja atualizar a pagina.
- - criar a primeira aba para exibir a dificuldade técnica do projeto e os alertas.
+OK - Implementar o método para enviar o comentário e ja atualizar a pagina.
+OK - criar a primeira aba para exibir a dificuldade técnica do projeto e os alertas.
 
-
+OK - Criar pagina de login e cadastrar usuário.
  - Criar paginas de administrador para criação, edição e deleção de projetos, grupos, relação projeto grupo,tags...
 
  - Criar pagina de login e cadastrar usuário.

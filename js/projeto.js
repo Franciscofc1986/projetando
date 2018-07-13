@@ -26,30 +26,34 @@ function comentar(idUsuario, idProjeto, mensagem, ordem) {
 
             // Retorno do Ajax
             console.log(data);
+            
         }
     }
 
     window.location.reload();
+    Materialize.toast('Comentário enviado com sucesso', 3000, 'green');
 }
 
 function enviarComentario() {
 
     if (typeof (Storage) !== "undefined") {
 
-        sessionStorage.setItem("idUsuarioLogado", 1); //ESSE CODIGO VAI SAIR ****************************
+        if (sessionStorage.getItem("idUsuarioLogado") === null) {
+            Materialize.toast('É necessário logar para enviar um comentário', 3000, 'red');
+        }else{
+            var usuarioLogado = sessionStorage.idUsuarioLogado;
+            var textoComentario = $('#campoComentario').val();
+            if (usuarioLogado) {
+                var proximaOrdem = Number(sessionStorage.ordemComentario) + 1;
 
-        var usuarioLogado = sessionStorage.idUsuarioLogado;
-        var textoComentario = $('#campoComentario').val();
-        if (usuarioLogado) {
-            var proximaOrdem = Number(sessionStorage.ordemComentario) + 1;
+                comentar(usuarioLogado, CodigoIDProjeto, textoComentario, proximaOrdem);
 
-            comentar(usuarioLogado, CodigoIDProjeto, textoComentario, proximaOrdem);
-
-        } else {
-            alert("É necessário logar para enviar um comentário.");
+            } else {
+                Materialize.toast('É necessário logar para enviar um comentário', 3000, 'red');
+            }
         }
     } else {
-        alert("Esse navegador não suporta armazenamento.");
+        Materialize.toast('Esse navegador não suporta armazenamento', 3000, 'red');
     }
 }
 
@@ -138,6 +142,7 @@ function curtir(idUsuario, idProjeto) {
     }
 
     window.location.reload();
+    Materialize.toast('Curtido', 3000, 'green');
 }
 
 function carregarProjeto(idProjeto) {
