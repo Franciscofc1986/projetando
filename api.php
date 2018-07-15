@@ -5,7 +5,6 @@
 	$pdo = new PDO('mysql:host=127.0.0.1;dbname=projetando;charset=utf8', 'francisco', 'francisco');
 	//$pdo = new PDO('mysql:host=localhost;dbname=temlo861_projetando;charset=utf8', 'temlo861_francis', 'francisco');
 	
-	
 	$method=$_SERVER["REQUEST_METHOD"];
 
 	$set = '';
@@ -17,10 +16,10 @@
 	}
 
 	$request = explode('/', trim($_SERVER["PATH_INFO"],'/'));
-	          $table = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
+	$table = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
 	$keyId = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
 	
-	
+	///api.php/imagem/usuario/
 	switch ($method) {
 		case 'GET':
 		 	if($table == "filtro"){
@@ -89,6 +88,22 @@
 								"from tbusuario ".
 								"where tbusuario.hashSenha = $idRegistro ";
 						break;
+					case 'projetos_favoritos': //retorna os projetos que possuem a tag x
+						$sql = "select tbprojeto.*, tbusuario.nome as autor, tbusuario.foto as fotoAutor, ".
+								"tbusuario.email as emailAutor, (select count(*) from tbcurtidas ".
+								"where idProjeto = tbprojeto.id) as curtidas, ".
+								"(SELECT group_concat( tbtag.nome ) as nomes FROM tbtag, tbtagprojeto ".
+								"WHERE tbtagprojeto.idProjeto = tbprojeto.id AND tbtag.id = tbtagprojeto.idTag ".
+								"ORDER BY tbtag.nome) as tags, (SELECT group_concat( tbtag.foto ) as fotos ".
+								"FROM tbtag, tbtagprojeto WHERE tbtagprojeto.idProjeto = tbprojeto.id ".
+								"AND tbtag.id = tbtagprojeto.idTag ORDER BY tbtag.nome) as fotos ".
+								"FROM tbprojeto, tbgrupoprojeto, tbusuario, tbcurtidas ".
+								"WHERE tbcurtidas.idUsuario = $idRegistro ".
+								"AND tbusuario.id = tbprojeto.idUsuario  ".
+								"AND tbcurtidas.idProjeto = tbprojeto.id ".
+								"GROUP BY tbprojeto.id ".
+								"ORDER BY curtidas DESC";
+						break;
 				}
 			}
 			else{
@@ -96,10 +111,41 @@
 			}
 			break;
 		case 'POST':
-			if($keyId){
-				$sql = "update `$table` set $set where id=$keyId";
-			}else{
-				$sql = "insert into `$table` set $set";
+			if($table == "imagem"){
+				$foto = $_FILES['imagem'];
+				if($foto['error'] == 0){
+					$target_dir = "imagem/".$keyId."/";
+					$tokenFoto = uniqid();
+					$imageFileType = strtolower(pathinfo($_FILES["imagem"]["name"],PATHINFO_EXTENSION));
+					$target_file = $target_dir . $tokenFoto . '.' . $imageFileType;
+					
+					// Check if file already exists
+					if (file_exists($target_file)) {
+						echo "Sorry, file already exists.";
+					}
+					// Check file size
+					if ($_FILES["imagem"]["size"] > 5000000) {
+						echo "Sorry, your file is too large.";
+					}
+					// Allow certain file formats
+					if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+						echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+					}
+
+					if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
+						$imagemCriada = "'".$tokenFoto . '.' . $imageFileType."'";
+						$sql = "update `tb$keyId` set `foto`=$imagemCriada where $set";
+					} else {
+						echo "Sorry, there was an error uploading your file.";
+					}
+				}
+			}
+			else{
+				if($keyId){
+					$sql = "update `$table` set $set where id=$keyId";
+				}else{
+					$sql = "insert into `$table` set $set";
+				}
 			}
 			break;
 		case 'DELETE':

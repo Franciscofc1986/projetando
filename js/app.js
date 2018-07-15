@@ -56,10 +56,10 @@ function carregarItens(idGrupo, voltou=false, nomeGrupo=""){
             $("#listaGrupos").html("");
                 $.each(retorno,function(i, grupo){
                     var nomeGrupoComAspas = "'" + grupo.nome + "'";
-                    if(grupo.imagem == null) grupo.imagem = "padrao.jpeg";
+                    if(grupo.foto == null) grupo.foto = "padrao.jpeg";
                     var item = '<div class="col s6 m3 l2"><a href="#" onclick="carregarItens('+grupo.id+', false, '+nomeGrupoComAspas+')">'+
                         '<div class="card z-depth-5"><div class="card-image">'+
-                            '<img src="imagem/grupo/'+grupo.imagem+'">'+
+                            '<img src="imagem/grupo/'+grupo.foto+'">'+
                             '</div><div class="card-content"><p><div class="grupos">'+
                             grupo.nome+
                             '</div></p></div></div></a></div>';

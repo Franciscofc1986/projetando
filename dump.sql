@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 11-Jul-2018 às 03:56
+-- Generation Time: 15-Jul-2018 às 22:05
 -- Versão do servidor: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `tbcomentario` (
   `idUsuario` int(11) DEFAULT NULL,
   `mensagem` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbcomentario`
@@ -45,7 +45,21 @@ CREATE TABLE IF NOT EXISTS `tbcomentario` (
 INSERT INTO `tbcomentario` (`id`, `idProjeto`, `ordem`, `idUsuario`, `mensagem`) VALUES
 (1, 1, 1, 1, 'Primeiro da lista porra'),
 (2, 1, 2, 1, 'Grande merda'),
-(3, 2, 1, 1, 'To sozinho aqui msm ?');
+(3, 2, 1, 1, 'To sozinho aqui msm ?'),
+(4, 1, 3, 1, 'teste'),
+(5, 1, 4, 1, 'testando novamnete'),
+(6, 1, 5, 1, 'outro'),
+(7, 2, 2, 1, 'e  aqui'),
+(8, 2, 3, 1, 'DFGDFGFD'),
+(9, 1, 6, 1, 'dfgfdgdfg'),
+(10, 1, 7, 1, 'teste'),
+(11, 1, 8, 1, 'sdfsdf\nsdf\nsdf\nsdfsdfsdf\nsdf\nsdfsdf\ns\ndfs\ndfs\ndfsdf'),
+(12, 2, 4, 1, 'gfhfhgfh'),
+(13, 2, 8, 1, 'xcvcxvxcv\nxcxcv'),
+(14, 2, 5, 1, 'xcvcxvxcv\nxcxcv'),
+(15, 2, 6, 1, 'xcvxcv'),
+(16, 2, 7, 1, 'xcvxcv'),
+(17, 2, 9, 5, 'hjkhjkhjkhjkm,h,jh,');
 
 -- --------------------------------------------------------
 
@@ -59,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `tbcurtidas` (
   `idUsuario` int(11) DEFAULT NULL,
   `idProjeto` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbcurtidas`
@@ -89,7 +103,18 @@ INSERT INTO `tbcurtidas` (`id`, `idUsuario`, `idProjeto`) VALUES
 (21, 1, 2),
 (22, 1, 2),
 (23, 1, 2),
-(24, 1, 1);
+(24, 1, 1),
+(25, 1, 2),
+(26, 1, 1),
+(27, 1, 1),
+(28, 1, 2),
+(29, 1, 2),
+(30, 1, 2),
+(31, 1, 2),
+(32, 1, 2),
+(33, 1, 2),
+(34, 5, 2),
+(35, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -101,20 +126,22 @@ DROP TABLE IF EXISTS `tbgrupo`;
 CREATE TABLE IF NOT EXISTS `tbgrupo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(500) DEFAULT NULL,
-  `imagem` varchar(500) DEFAULT NULL,
+  `foto` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbgrupo`
 --
 
-INSERT INTO `tbgrupo` (`id`, `nome`, `imagem`) VALUES
+INSERT INTO `tbgrupo` (`id`, `nome`, `foto`) VALUES
 (1, 'Grupo 1', NULL),
 (2, 'Aquaponia', 'img_1.jpeg'),
-(3, 'Grupo 3', NULL),
+(3, 'Grupo 3', '5b4b6eba49d14.jpeg'),
 (4, 'Grupo 4', NULL),
-(5, 'Grupo 5', NULL);
+(5, 'Grupo 5', NULL),
+(6, 'Grupo novo', '5b4b70eb3c8b3.jpeg'),
+(7, 'Grupo atual', NULL);
 
 -- --------------------------------------------------------
 
@@ -128,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `tbgrupogrupo` (
   `idPai` int(11) DEFAULT NULL,
   `idFilho` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbgrupogrupo`
@@ -139,7 +166,8 @@ INSERT INTO `tbgrupogrupo` (`id`, `idPai`, `idFilho`) VALUES
 (2, 2, 3),
 (3, 3, 4),
 (4, 0, 2),
-(5, 3, 5);
+(5, 3, 5),
+(6, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -153,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `tbgrupoprojeto` (
   `idGrupo` int(11) DEFAULT NULL,
   `idProjeto` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbgrupoprojeto`
@@ -162,7 +190,8 @@ CREATE TABLE IF NOT EXISTS `tbgrupoprojeto` (
 INSERT INTO `tbgrupoprojeto` (`id`, `idGrupo`, `idProjeto`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 2, 2);
+(3, 2, 2),
+(4, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -196,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `tbprojeto` (
   `materiaisJson` text,
   `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbprojeto`
@@ -204,7 +233,8 @@ CREATE TABLE IF NOT EXISTS `tbprojeto` (
 
 INSERT INTO `tbprojeto` (`id`, `nome`, `codigoVideo`, `passosJson`, `custosJson`, `dificuldadesJson`, `materiaisJson`, `idUsuario`) VALUES
 (1, 'Projeto de teste', 'GHB86yxT-W8', '{\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"3º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n    \"4º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n}', '{\r\n \"hábaco\": 15,\r\n \"2 x Isqueiro\": 45,\r\n \"4 x Pilhas\": 12,\r\n \"TOTAL\": 78\r\n}', '{\r\n \"dificuldade\":10,\r\n \"alertas\": [1,3,5]\r\n}', '{\r\n \"materiais\":\r\n  {\r\n   \"1cx\":\"Sabão em pó\",\r\n   \"2un\":\"isqueiro\",\r\n   \"1un\":\"cola quente\"\r\n  },\r\n  \"ferramentas\": [\"Cola-quente\", \"Martelo\", \"Espatula\"]\r\n}', 1),
-(2, 'Projeto de aquaponia', 'ymknJKeFoLY', '{\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"3º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n    \"4º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n}', '{\r\n \"hábaco\": 15,\r\n \"2 x Isqueiro\": 45,\r\n \"4 x Pilhas\": 12,\r\n \"TOTAL\": 78\r\n}', '{\r\n \"dificuldade\":70,\r\n \"alertas\": [1,2,3,4,5,8,10]\r\n}', '{\r\n \"materiais\":\r\n  {\r\n   \"1cx\":\"Sabão em pó\",\r\n   \"2un\":\"isqueiro\",\r\n   \"1un\":\"cola quente\"\r\n  },\r\n  \"ferramentas\": [\"Cola-quente\", \"Martelo\", \"Espatula\"]\r\n}', 1);
+(2, 'Projeto de aquaponia', 'ymknJKeFoLY', '{\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"3º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n    \"4º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n}', '{\r\n \"hábaco\": 15,\r\n \"2 x Isqueiro\": 45,\r\n \"4 x Pilhas\": 12,\r\n \"TOTAL\": 78\r\n}', '{\r\n \"dificuldade\":70,\r\n \"alertas\": [1,2,3,4,5,8,10]\r\n}', '{\r\n \"materiais\":\r\n  {\r\n   \"1cx\":\"Sabão em pó\",\r\n   \"2un\":\"isqueiro\",\r\n   \"1un\":\"cola quente\"\r\n  },\r\n  \"ferramentas\": [\"Cola-quente\", \"Martelo\", \"Espatula\"]\r\n}', 1),
+(3, 'Projeto 3', '10x49T4oAzY', '{\r\n    \"1º Passo\": \"Separe os materiais\",\r\n    \"2º Passo\": \"Separe os materiais\",\r\n    \"3º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",\r\n    \"4º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"\r\n}\r\n            ', '{\r\n    \"hábaco\": 15,\r\n    \"2 x Isqueiro\": 45,\r\n    \"4 x Pilhas\": 12,\r\n    \"TOTAL\": 78\r\n}\r\n            ', '{\r\n    \"dificuldade\":10,\r\n    \"alertas\": [1,3,5]\r\n}\r\n            ', '{\r\n    \"materiais\":\r\n    {\r\n    \"1cx\":\"Sabão em pó\",\r\n    \"2un\":\"isqueiro\",\r\n    \"1un\":\"cola quente\"\r\n    },\r\n    \"ferramentas\": [\"Cola-quente\", \"Martelo\", \"Espatula\"]\r\n}\r\n            ', 1);
 
 -- --------------------------------------------------------
 
@@ -267,14 +297,23 @@ CREATE TABLE IF NOT EXISTS `tbusuario` (
   `email` varchar(200) DEFAULT NULL,
   `hashSenha` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbusuario`
 --
 
 INSERT INTO `tbusuario` (`id`, `nome`, `foto`, `email`, `hashSenha`) VALUES
-(1, 'Francisco FC', 'img_1.jpeg', 'francisco_fc@yahoo.com.br', '123');
+(1, 'Francisco FC', 'img_1.jpeg', 'francisco_fc@yahoo.com.br', '1937211467'),
+(2, 'juca', '5b4bc192073c8.png', 'juca@uol.br', '1264879959'),
+(3, 'elite', '5b4b614ad9890.jpeg', 'elite@teste.br', '112581311'),
+(4, 'dfgdg', NULL, 'dfgdfg@uol.br', '1562708426'),
+(5, 'teste', '5b4bacc01dcad.png', 'teste@yahoo.com.br', '1146334401'),
+(6, 'fghfgh', NULL, 'fghfgh@uol', '273621906'),
+(7, 'pipoca', NULL, 'pipoca@uol', '1628421724'),
+(8, 'tulipa', NULL, 'tulipa@br', '1282357853'),
+(9, 'testando', NULL, 'testando@uol', '1376173288'),
+(10, 'queijo', NULL, 'queijo@queijo', '2077644283');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

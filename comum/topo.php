@@ -27,12 +27,12 @@
                <div class="user-view">
                   <div class="background">
                   </div>
-                  <a href="#"><img class="circle" src="imagem/logo.png"></a>
-                  <a href="#"><span class="bold white-text name">
+                  <a href="#" id="imagemUsuario"><img class="circle" src="imagem/logo.png"></a>
+                  <a href="#"><span class="bold white-text name" id="nomeUsuario">
                   Projetando
                   </span></a>
-                  <a href="#"><span class="white-text email">
-                  francisco_fc@yahoo.com.br
+                  <a href="#"><span class="white-text email" id="emailUsuario">
+                  projetando.org
                   </span></a>
                </div>
             </li>
@@ -41,10 +41,10 @@
             </li>
             <li><a class="subheader white-text">Acesso rápido</a></li>
             <li><a href="index.php" class="white-text"><i class="material-icons white-text">home</i>Pagina inicial</a></li>
-            <li><a href="#!" class="white-text"><i class="material-icons white-text">thumb_up</i>Projetos favoritos</a></li>
+            <li><a href="favoritos.php" class="white-text logado hide"><i class="material-icons white-text">thumb_up</i>Projetos favoritos</a></li>
             <li><a href="#modal1" class="white-text modal-trigger deslogado"><i class="material-icons white-text">vpn_key</i>Logar</a></li>
             <li><a href="#modal2" class="white-text modal-trigger deslogado"><i class="material-icons white-text">person_add</i>Cadastrar usuário</a></li>
-            
+            <li><a href="#modal3" class="white-text modal-trigger logado hide"><i class="material-icons white-text">person_pin</i>Editar Imagem do usuário</a></li>
 
             <li><a href="criarDebate.php" class="white-text admin hide"><i class="material-icons white-text">playlist_add</i>Criar projeto</a></li>
             <li><a href="criarFalacia.php" class="white-text admin hide"><i class="material-icons white-text">fiber_new</i>Criar grupo</a></li>
@@ -57,7 +57,7 @@
             <li><a class="waves-effect white-text logado hide"  onclick="deslogar()"><i class="material-icons white-text">exit_to_app</i>Deslogar</a></li>
          </ul>
 
-         <!-- Modal Structure -->
+         <!-- Modal de Login -->
             <div id="modal1" class="modal">
                 <div class="modal-content">
                     <h4>Login</h4>
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-
+            <!--Modal de Criação de Usuário-->
             <div id="modal2" class="modal">
                 <div class="modal-content">
                     <h4>Cadastrar Usuário</h4>
@@ -117,6 +117,34 @@
                             <i class="material-icons right">send</i>
                         </button>
                 </div>
+            </div>
+
+            <!-- Modal de Edição de Imagem do usuário -->
+            <div id="modal3" class="modal">
+                <form method="post" enctype="multipart/form-data" id="formEditarImagem">
+                <div class="modal-content">
+                    <h4>Editar foto</h4>
+                        <div>
+                            <input type="hidden" id="id" name="id" />
+                            <br>
+                           <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Foto</span>
+                                    <input type="file" id="imagem" name="imagem">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                    <button class="btn waves-effect waves-light light-blue darken-4 modal-close">Salvar Imagem
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+                </form>
             </div>
            
       </header>

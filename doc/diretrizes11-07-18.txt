@@ -5,10 +5,9 @@ OK - Implementar o método para enviar o comentário e ja atualizar a pagina.
 OK - criar a primeira aba para exibir a dificuldade técnica do projeto e os alertas.
 
 OK - Criar pagina de login e cadastrar usuário.
- - Criar paginas de administrador para criação, edição e deleção de projetos, grupos, relação projeto grupo,tags...
+OK - Implementar estrutura para logar e manter hash((usuário+senha)base64) para requisições restritas como enviar comentário.
 
- - Criar pagina de login e cadastrar usuário.
- - Implementar estrutura para logar e manter hash((usuário+senha)base64) para requisições restritas como enviar comentário.
+ - Criar paginas de administrador para criação, edição e deleção de projetos, grupos, relação projeto grupo,tags...
 
  - Adequar menu lateral com itens:
  *Usuario deslogado: -Simbolo do site com nome do site - Principal, - Sobre o site, - Cadastrar usuário, - Logar

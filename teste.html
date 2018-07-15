@@ -3,23 +3,289 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>teste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+        }
+        /* Style the tab */
+        
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        /* Style the buttons inside the tab */
+        
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        /* Change background color of buttons on hover */
+        
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        /* Create an active/current tablink class */
+        
+        .tab button.active {
+            background-color: #ccc;
+        }
+        /* Style the tab content */
+        
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
 </head>
 
 <body>
-    <form action="api/tbcurtidas/" method="get">
+
+    <p>Click on the buttons inside the tabbed menu:</p>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'London')">Cadastrar Projeto</button>
+        <button class="tablinks" onclick="openCity(event, 'Paris')">Deletar Projeto</button>
+        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Cadastrar Grupo</button>
+        <button class="tablinks" onclick="openCity(event, 'Jacarei')">Deletar Grupo</button>
+        <button class="tablinks" onclick="openCity(event, 'Saojose')">Cadastrar Grupo Grupo</button>
+        <button class="tablinks" onclick="openCity(event, 'Santabranca')">Cadastrar Projeto de Grupo</button>
+        <button class="tablinks" onclick="openCity(event, 'SaoPaulo')">Cadastrar Imagem</button>
+    </div>
+
+    <div id="London" class="tabcontent">
+        <h4>Cadastrar Projeto</h4>
+
+        <form action="api.php/tbprojeto/" method="post">
+            <div>
+                <label for="idUsuario">idUsuario:</label>
+                <input type="text" id="idUsuario" name="idUsuario" value="1" />
+            </div>
+            <br>
+            <div>
+                <label for="nome">nome:</label>
+                <input type="text" id="nome" name="nome" />
+            </div>
+            <br>
+            <div>
+                <label for="codigoVideo">codigo video:</label>
+                <input type="text" id="codigoVideo" name="codigoVideo" />
+            </div>
+            <br>
+            <div>
+                <label for="passosJson">passo a passo:</label>
+                <textarea type="text" id="passosJson" name="passosJson" rows="10" cols="100">
+{
+    \"1º Passo\": \"Separe os materiais\",
+    \"2º Passo\": \"Separe os materiais\",
+    \"3º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\",
+    \"4º Passo\": \"Nunca mexa com fogo sem a presença de um adulto\"
+}
+            </textarea>
+            </div>
+            <br>
+            <div>
+                <label for="custosJson">custos:</label>
+                <textarea type="text" id="custosJson" name="custosJson" rows="10" cols="100">
+{
+    \"hábaco\": 15,
+    \"2 x Isqueiro\": 45,
+    \"4 x Pilhas\": 12,
+    \"TOTAL\": 78
+}
+            </textarea>
+            </div>
+            <br>
+            <div>
+                <label for="dificuldadesJson">Dificuldades:</label>
+                <textarea type="text" id="dificuldadesJson" name="dificuldadesJson" rows="10" cols="100">
+{
+    \"dificuldade\":10,
+    \"alertas\": [1,3,5]
+}
+            </textarea>
+            </div>
+            <br>
+            <div>
+                <label for="materiaisJson">Materiais:</label>
+                <textarea type="text" id="materiaisJson" name="materiaisJson" rows="10" cols="100">
+{
+    \"materiais\":
+    {
+    \"1cx\":\"Sabão em pó\",
+    \"2un\":\"isqueiro\",
+    \"1un\":\"cola quente\"
+    },
+    \"ferramentas\": [\"Cola-quente\", \"Martelo\", \"Espatula\"]
+}
+            </textarea>
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit">Registrar</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="Paris" class="tabcontent">
+        <h3>Deletar Projeto</h3>
         <div>
-            <label for="name">ID Projeto:</label>
-            <input type="text" id="idProjeto" name="idProjeto" />
-        </div>
-        <div>
-            <label for="mail">ID Usuario:</label>
-            <input type="text" id="idUsuario" name="idUsuario" />
+            <label for="idProjeto">idProjeto:</label>
+            <input type="text" id="idProjeto" name="idProjeto" value="1" />
         </div>
         <div class="button">
-            <button type="submit">Cadastrar</button>
+            <button type="submit" onclick="deletarItem('idProjeto', 'tbprojeto')">Deletar</button>
         </div>
-    </form>
+    </div>
+
+    <div id="Tokyo" class="tabcontent">
+        <h3>Cadastrar Grupo</h3>
+        <form action="api.php/tbgrupo/" method="post">
+            <div>
+                <label for="nomeGrupo">Nome do Grupo:</label>
+                <input type="text" id="nomeGrupo" name="nome" value="Nome do Grupo" />
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit" >Cadastrar</button>
+            </div>
+        </form>
+    </div>
+    <div id="Jacarei" class="tabcontent">
+        <h3>Deletar Grupo</h3>
+        <div>
+            <label for="idGrupo">idGrupo:</label>
+            <input type="text" id="idGrupo" name="idGrupo" value="1" />
+        </div>
+        <div class="button">
+            <button type="submit" onclick="deletarItem('idGrupo', 'tbgrupo')">Deletar</button>
+        </div>
+    </div>
+    <div id="Saojose" class="tabcontent">
+        <h3>Cadastrar Relação Grupo com Grupo</h3>
+        <form action="api.php/tbgrupogrupo/" method="post">
+            <div>
+                <label for="idPai">Grupo pai:</label>
+                <input type="text" id="idPai" name="idPai" value="1" />
+                <br>
+                <label for="idFilho">Grupo filho:</label>
+                <input type="text" id="idFilho" name="idFilho" value="1" />
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit" >Cadastrar</button>
+            </div>
+        </form>
+    </div>
+        <div id="Santabranca" class="tabcontent">
+        <h3>Cadastrar Relação Projeto com Grupo</h3>
+        <form action="api.php/tbgrupoprojeto/" method="post">
+            <div>
+                <label for="idGrupo">ID do Grupo:</label>
+                <input type="text" id="idGrupo" name="idGrupo" value="1" />
+                <br>
+                <label for="idProjeto">ID do Projeto:</label>
+                <input type="text" id="idProjeto" name="idProjeto" value="1" />
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit" >Cadastrar</button>
+            </div>
+        </form>
+    </div>
+    <div id="SaoPaulo" class="tabcontent">
+        <h3>Cadastrar imagem de usuario</h3>
+        <form action="api.php/imagem/usuario" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="id">idRegistro:</label>
+                <input type="text" id="id" name="id" value="1" />
+                <br>
+                <span>Imagem</span>
+                <input type="file" id="imagem" name="imagem">
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit">Salvar Imagem</button>
+            </div>
+        </form>
+        <hr>
+        <h3>Cadastrar imagem de tag</h3>
+        <form action="api.php/imagem/tag" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="id">idRegistro:</label>
+                <input type="text" id="id" name="id" value="1" />
+                <br>
+                <span>Imagem</span>
+                <input type="file" id="imagem" name="imagem">
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit">Salvar Imagem</button>
+            </div>
+        </form>
+        <hr>
+        <h3>Cadastrar imagem de grupo</h3>
+        <form action="api.php/imagem/grupo" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="id">idRegistro:</label>
+                <input type="text" id="id" name="id" value="1" />
+                <br>
+                <span>Imagem</span>
+                <input type="file" id="imagem" name="imagem">
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit">Salvar Imagem</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script>
+        var urlBase = "http://localhost";
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function deletarItem(campoID, tabela) {
+            // Delete a user
+            var idItem = $('#'+campoID).val().trim();
+            var url = urlBase + "/api.php/"+tabela+"/"+idItem;
+            var xhr = new XMLHttpRequest();
+            xhr.open("DELETE", url, true);
+            xhr.onload = function () {
+                var users = JSON.parse(xhr.responseText);
+                if (xhr.readyState == 4 && xhr.status == "200") {
+                    console.table(users);
+                } else {
+                    console.error(users);
+                }
+            }
+            xhr.send(null);
+        }
+
+    </script>
+
 </body>
 
 </html>

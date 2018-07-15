@@ -89,10 +89,7 @@ function carregarComentarios() {
         },
         success: function (retorno) {
             console.log(retorno);
-
             $('#listaDeComentarios').html(gerarListaComentariosHtml(retorno));
-
-
         }
     });
 }
@@ -114,7 +111,9 @@ function gerarListaComentariosHtml(listaComentarioObj) {
     return comentariosHtml;
 }
 
-function curtir(idUsuario, idProjeto) {
+function curtir(idProjeto) {
+
+    var idUsuario = sessionStorage.getItem('idUsuarioLogado');
     // Exemplo de requisição POST
     var ajax = new XMLHttpRequest();
 
@@ -172,7 +171,7 @@ function carregarProjeto(idProjeto) {
             var passosObjeto = JSON.parse(retorno[0].passosJson)
             console.log(passosObjeto);
             $('#tituloProjeto').html(retorno[0].nome);
-            var htmlCurtidas = '<a href="" class="blue-text" onclick="curtir(1,' + idProjeto + ')"><img src="imagem/like.png" id="qtdCurtidas" style="display: inline-flex; vertical-align: top; width: 20px; height: 20px; margin-right: 5px">' + retorno[0].curtidas + '</a>';
+            var htmlCurtidas = '<a href="" class="blue-text" onclick="curtir(' + idProjeto + ')"><img src="imagem/like.png" id="qtdCurtidas" style="display: inline-flex; vertical-align: top; width: 20px; height: 20px; margin-right: 5px">' + retorno[0].curtidas + '</a>';
             $('#qtdCurtidas').html(htmlCurtidas);
             $('#listaAlertas').html(gerarAlertasHtml(dificuldadeObjeto.alertas));
 

@@ -8,6 +8,32 @@ console.log(sessionStorage);
 //var urlBase = "http://temlogica.com";
 var urlBase = "http://localhost";
 
+$("#formEditarImagem").submit(function () {
+    var formData = new FormData(this);
+
+    $.ajax({
+        url: urlBase+'/api.php/imagem/usuario',
+        type: 'POST',
+        data: formData,
+        success: function (data) {
+            //alert(data)
+        },
+        cache: false,
+        contentType: false,
+        processData: false,
+        xhr: function() {  // Custom XMLHttpRequest
+            var myXhr = $.ajaxSettings.xhr();
+            if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                myXhr.upload.addEventListener('progress', function () {
+                    /* faz alguma coisa durante o progresso do upload */
+                }, false);
+            }
+        return myXhr;
+        }
+    });
+});
+
+
 function cadastrarUsuario() {
 
     var nome_usuario = $('#nome_usuario').val().trim();
@@ -52,9 +78,9 @@ function cadastrarUsuario() {
 
                 // Retorno do Ajax
                 console.log(data);
-                
             }
         }
+        
         $('#modal2').modal('close');
         verificar_usuario(hashSenha);
         Materialize.toast('Usuário cadastrado com sucesso.', 3000, 'green');
@@ -72,8 +98,7 @@ function verificarLogin() {
         $(".deslogado").removeClass("hide");
         $(".logado").addClass("hide");
     } else {
-        $(".logado").removeClass("hide");
-        $(".deslogado").addClass("hide");
+        verificar_usuario(sessionStorage.getItem('hashUsuario'));        
     }
 }
 
@@ -99,6 +124,11 @@ function deslogar() {
     sessionStorage.removeItem('hashUsuario');
     sessionStorage.removeItem('emailUsuario');
     sessionStorage.removeItem('fotoUsuario');
+    
+    $("#imagemUsuario").html('<img class="circle" src="imagem/logo.png">');
+    $("#nomeUsuario").html('Projetando');
+    $("#emailUsuario").html('projetando.org');
+
     $(".deslogado").removeClass("hide");
     $(".logado").addClass("hide");
     Materialize.toast('Deslogado com sucesso!', 3000, 'green');
@@ -144,6 +174,16 @@ function verificar_usuario(hashSenha){
                     sessionStorage.setItem("fotoUsuario", retorno[0].foto);
                     $(".logado").removeClass("hide");
                     $(".deslogado").addClass("hide");
+
+                    if (sessionStorage.getItem("fotoUsuario") != "null") {
+                        var imagemUsuario = '<img class="circle" src="imagem/usuario/'+sessionStorage.getItem("fotoUsuario")+'">';
+                        $("#imagemUsuario").html(imagemUsuario);
+                    }else{
+                        $("#imagemUsuario").html('<img class="circle" src="/imagem/usuario/user.png">');
+                    }
+                    $("#id").val(sessionStorage.getItem('idUsuarioLogado'));
+                    $("#nomeUsuario").html(sessionStorage.getItem("nomeUsuario"));
+                    $("#emailUsuario").html(sessionStorage.getItem("emailUsuario"));
                     Materialize.toast('Logado com sucesso!', 3000, 'green');
                 }
 
