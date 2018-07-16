@@ -3,7 +3,7 @@
     $projetoID = $_GET['projeto'];
  }
 
-require_once("/comum/topo.php");
+require_once("comum/topo.php");
 ?>
 
 <main>
@@ -108,7 +108,7 @@ require_once("/comum/topo.php");
 </main>
 
 <?php
-require_once("/comum/baixo.php");
+require_once("comum/baixo.php");
 ?>
 
 <script type="text/javascript" src="js/projeto.js"></script>

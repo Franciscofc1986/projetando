@@ -1,6 +1,3 @@
-//var urlBase = "http://temlogica.com";
-var urlBase = "http://localhost";
-
 function carregarFavoritos(){
 
     var idUsuario = sessionStorage.getItem("idUsuarioLogado");

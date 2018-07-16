@@ -1,5 +1,5 @@
 <?php 
-require_once("/comum/topo.php");
+require_once("comum/topo.php");
 ?>
 <main>
     <nav class="indigo lighten-4" style="height: 40px;">
@@ -39,7 +39,7 @@ require_once("/comum/topo.php");
 </main>
 
 <?php
-require_once("/comum/baixo.php");
+require_once("comum/baixo.php");
 ?>
 
 <script type="text/javascript" src="js/app.js"></script>

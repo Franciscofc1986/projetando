@@ -1,5 +1,5 @@
 <?php 
-require_once("/comum/topo.php");
+require_once("comum/topo.php");
 ?>
 <main>
     <div class="row container">
@@ -17,7 +17,7 @@ require_once("/comum/topo.php");
 </main>
 
 <?php
-require_once("/comum/baixo.php");
+require_once("comum/baixo.php");
 ?>
 
 <script type="text/javascript" src="js/favoritos.js"></script>
