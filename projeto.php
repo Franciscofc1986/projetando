@@ -12,7 +12,7 @@ require_once("comum/topo.php");
             <div class="row" id="Projeto">
                 <div class="col s12 ">
                     <br>
-                    <h5 class="left" id="tituloProjeto">Projeto de aquaponia</h5>
+                    <h5 class="left titulo" id="tituloProjeto">Projeto de aquaponia</h5>
                     <div class="right z-depth-3" id="qtdCurtidas">
                     </div>
                     <br>
@@ -31,7 +31,7 @@ require_once("comum/topo.php");
                     </ul>
                     <div id="test1" class="col s12 ">
                         <br>
-                        <h5 class="center">Detalhes do Projeto</h5>
+                        <h5 class="center titulo">Detalhes do Projeto</h5>
                         <br>
                         <div class="card z-depth-3" style="padding: 20px;">
                             <div id="dificuldadeTecnica">
@@ -44,7 +44,7 @@ require_once("comum/topo.php");
                     </div>
                     <div id="test2" class="col s12 ">
                         <br>
-                        <h5 class="center">Vídeo</h5>
+                        <h5 class="center titulo">Vídeo</h5>
                         <br>
                         <div class="video-container" id="videoProjeto">
                             
@@ -52,7 +52,7 @@ require_once("comum/topo.php");
                     </div>
                     <div id="test3">
                         <br>
-                        <h5 class="center">Materiais utilizados</h5>
+                        <h5 class="center titulo">Materiais utilizados</h5>
                         <br>
                         <ul class="collection with-header" id="materiais">
                         </ul>
@@ -62,18 +62,18 @@ require_once("comum/topo.php");
                     </div>
                     <div id="test4">
                         <br>
-                        <h5 class="center">Passo-a-passo</h5>
+                        <h5 class="center titulo">Passo-a-passo</h5>
                         <br>
                             <ul class = "collection" id="passoapasso">         
                             </ul>
                     </div>
                     <div id="test5">
                         <br>
-                        <h5 class="center">Custos</h5>
+                        <h5 class="center titulo">Custos</h5>
                         <br>
-                        <table class="striped">
+                        <table class="white-text">
                             <thead>
-                            <tr>
+                            <tr >
                                 <th>Item</th>
                                 <th>Preço</th>
                             </tr>
@@ -85,7 +85,7 @@ require_once("comum/topo.php");
                     </div>
                     <div id="test6">
                         <br>
-                        <h5 class="center">Comentários</h5>
+                        <h5 class="center titulo">Comentários</h5>
                         <br>
                         <ul class="collection" id="listaDeComentarios">
                         </ul>

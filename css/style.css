@@ -56,13 +56,13 @@ h1 {
 }
 
 .grupos{
-    color: black;
+    color: white;
     font-weight: bold;
     text-align: center;
 }
 
 .breadcrumb{
-    font-size: 10px;
+    color: #01579b;
 }
 
 .icons_menu{
@@ -98,5 +98,49 @@ main {
 }
 
 .cartao_grupo{
-    height: 200px; 
+    height: 150px; 
+    background: #2a2a2a;
 }
+
+.fundo_blueprint{
+    background-image: url("/imagem/blueprint.jpg");
+}
+
+.fundo_topo_blueprint{
+    background-image: url("/imagem/topo.jpg");
+}
+
+.fundo_menu_blueprint{
+    background-image: url("/imagem/menu_blue.jpg");
+}
+
+.cor_fundo_tela{
+    background: #3e3e3e;
+}
+
+.titulo{
+    color: white;
+}
+
+.botaoGrupo{
+    background: #01579b;
+    margin: 5px;
+    padding: 10px;
+    line-height: 12px; 
+    height: 90px;
+}
+
+.botaoGrupo:focus{ 
+  background-color: #4f4f4f;
+}
+
+.botaoGrupo:visited{
+  background-color: #4f4f4f;
+}
+.botaoGrupo:hover {
+  background-color: #4f4f4f;
+}
+.botaoGrupo:active{
+  background-color: #4f4f4f;
+}
+

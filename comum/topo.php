@@ -11,23 +11,23 @@
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
    </head>
-   <body class="grey lighten-4">
+   <body class="cor_fundo_tela">
       <header>
          <nav class="z-depth-5">
             <a href="" data-activates="slide-out" class="button-collapse menu-1 show-on-large"><i class="material-icons">menu</i></a>
-            <div class="nav-wrapper light-blue darken-3">
+            <div class="nav-wrapper fundo_topo_blueprint">
                <div class="container">
                   <img src="imagem/logo.png" style="width: 40px; height: 40px; margin-top: 10px;" alt="imagem"> 
                   <a href="index.php" style="margin-left: 10px;" class="brand-logo title-1">Projetando</a>
                </div>
             </div>
          </nav>
-         <ul id="slide-out" class="side-nav light-blue darken-4 white-text">
+         <ul id="slide-out" class="side-nav fundo_menu_blueprint white-text">
             <li>
                <div class="user-view">
                   <div class="background">
                   </div>
-                  <a href="#" id="imagemUsuario"><img class="circle" src="imagem/logo.png"></a>
+                  <a href="#modal3" class="modal-trigger" id="imagemUsuario"><img class="circle" src="imagem/logo.png"></a>
                   <a href="#"><span class="bold white-text name" id="nomeUsuario">
                   Projetando
                   </span></a>
@@ -44,7 +44,6 @@
             <li><a href="favoritos.php" class="white-text logado hide"><i class="material-icons white-text">thumb_up</i>Projetos favoritos</a></li>
             <li><a href="#modal1" class="white-text modal-trigger deslogado"><i class="material-icons white-text">vpn_key</i>Logar</a></li>
             <li><a href="#modal2" class="white-text modal-trigger deslogado"><i class="material-icons white-text">person_add</i>Cadastrar usuário</a></li>
-            <li><a href="#modal3" class="white-text modal-trigger logado hide"><i class="material-icons white-text">person_pin</i>Editar Imagem do usuário</a></li>
 
             <li><a href="criarDebate.php" class="white-text admin hide"><i class="material-icons white-text">playlist_add</i>Criar projeto</a></li>
             <li><a href="criarFalacia.php" class="white-text admin hide"><i class="material-icons white-text">fiber_new</i>Criar grupo</a></li>
@@ -75,7 +74,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
                 <button class="btn waves-effect waves-light light-blue darken-4 modal-close" onclick="logar()" >Logar
                             <i class="material-icons right">send</i>
                         </button>
@@ -112,7 +110,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
                 <button class="btn waves-effect waves-light light-blue darken-4" onclick="cadastrarUsuario()" >Cadastrar
                             <i class="material-icons right">send</i>
                         </button>
@@ -139,7 +136,6 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
                     <button class="btn waves-effect waves-light light-blue darken-4 modal-close">Salvar Imagem
                         <i class="material-icons right">send</i>
                     </button>

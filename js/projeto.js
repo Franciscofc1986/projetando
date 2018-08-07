@@ -94,7 +94,7 @@ function carregarComentarios() {
 
 function gerarListaComentariosHtml(listaComentarioObj) {
     var comentariosHtml = '';
-
+    sessionStorage.setItem("ordemComentario", 0);
     $.each(listaComentarioObj, function (i, comentario) {
         comentariosHtml += '<li class="collection-item avatar"><img src="imagem/usuario/' + comentario.foto + '" alt="" class="circle">' +
             '<span class="title" style="font-weight: bold;">' + comentario.nome + '</span><p>' + comentario.mensagem + '</p></li>';
@@ -164,9 +164,9 @@ function carregarProjeto(idProjeto) {
             console.log(dificuldadeObjeto);
             var custosObjeto = JSON.parse(retorno[0].custosJson);
             console.log(custosObjeto);
-            var materiaisObjeto = JSON.parse(retorno[0].materiaisJson)
+            var materiaisObjeto = JSON.parse(retorno[0].materiaisJson);
             console.log(materiaisObjeto);
-            var passosObjeto = JSON.parse(retorno[0].passosJson)
+            var passosObjeto = JSON.parse(retorno[0].passosJson);
             console.log(passosObjeto);
             $('#tituloProjeto').html(retorno[0].nome);
             var htmlCurtidas = '<a href="" class="blue-text" onclick="curtir(' + idProjeto + ')"><img src="imagem/like.png" id="qtdCurtidas" style="display: inline-flex; vertical-align: top; width: 20px; height: 20px; margin-right: 5px">' + retorno[0].curtidas + '</a>';

@@ -5,9 +5,6 @@ $(document).ready(function () {
 console.log("Armazenamento local: ");
 console.log(sessionStorage);
 
-//var urlBase = "http://temlogica.com";
-var urlBase = "http://localhost";
-
 $("#formEditarImagem").submit(function () {
     var formData = new FormData(this);
 
@@ -82,7 +79,7 @@ function cadastrarUsuario() {
         }
         
         $('#modal2').modal('close');
-        verificar_usuario(hashSenha);
+        verificar_usuario(hashSenha, false);
         Materialize.toast('Usuário cadastrado com sucesso.', 3000, 'green');
     }
 }
@@ -98,7 +95,7 @@ function verificarLogin() {
         $(".deslogado").removeClass("hide");
         $(".logado").addClass("hide");
     } else {
-        verificar_usuario(sessionStorage.getItem('hashUsuario'));        
+        verificar_usuario(sessionStorage.getItem('hashUsuario'), false);        
     }
 }
 
@@ -143,10 +140,10 @@ function logar() {
 
     var hashSenha = criarHash(dadosConcatenados);
 
-    verificar_usuario(hashSenha);
+    verificar_usuario(hashSenha, true);
 }
 
-function verificar_usuario(hashSenha){
+function verificar_usuario(hashSenha, mostrarMsg){
     var url = urlBase + "/api.php/filtro/logar/" + hashSenha;
 
     $.ajax({
@@ -184,7 +181,7 @@ function verificar_usuario(hashSenha){
                     $("#id").val(sessionStorage.getItem('idUsuarioLogado'));
                     $("#nomeUsuario").html(sessionStorage.getItem("nomeUsuario"));
                     $("#emailUsuario").html(sessionStorage.getItem("emailUsuario"));
-                    Materialize.toast('Logado com sucesso!', 3000, 'green');
+                    if(mostrarMsg) Materialize.toast('Logado com sucesso!', 3000, 'green');
                 }
 
                 console.log(sessionStorage);

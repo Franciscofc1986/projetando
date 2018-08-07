@@ -54,18 +54,24 @@ function carregarItens(idGrupo, voltou=false, nomeGrupo=""){
                 $.each(retorno,function(i, grupo){
                     var nomeGrupoComAspas = "'" + grupo.nome + "'";
                     if(grupo.foto == null) grupo.foto = "padrao.jpeg";
-                    var item = '<div class="col s6 m3 l2"><a href="#" onclick="carregarItens('+grupo.id+', false, '+nomeGrupoComAspas+')">'+
-                        '<div class="card cartao_grupo">'+
+                    // var item = '<div class="col s6 m3 l2"><a href="#" onclick="carregarItens('+grupo.id+', false, '+nomeGrupoComAspas+')">'+
+                    //     '<div class="card cartao_grupo">'+
 
-                            '<div class="card-image">'+
-                            '<img src="imagem/grupo/'+grupo.foto+'">'+
-                            '</div>'+
+                    //         '<div class="card-image">'+
+                    //         '<img src="imagem/grupo/'+grupo.foto+'">'+
+                    //         '</div>'+
 
-                            '<div class="card-content center-align" style="padding: 0px;"><p><div class="grupos">'+
-                                grupo.nome+
-                            '</div></p></div>'+
+                    //         '<div class="card-content center-align" style="padding: 0px;"><p><div class="grupos white-text">'+
+                    //             grupo.nome+
+                    //         '</div></p></div>'+
 
-                            '</div></a></div>';
+                    //         '</div></a></div>';
+                    var item = '<div class="col s6 m4 l3">'+
+                                '<a class="waves-effect waves-light btn-large botaoGrupo z-depth-5" onclick="carregarItens('+grupo.id+', false, '+nomeGrupoComAspas+')">'+
+                                  '<div style="width: 105px;" >'+
+                                    '<img src="imagem/grupo/'+grupo.foto+'" height="42px" width="42px"><br>'+ grupo.nome +
+                                  '</div></a>'+
+                               '</div>';
                     
                     $("#listaGrupos").append(item);
                 });
@@ -99,8 +105,6 @@ function preencherTags(tags, fotos){
      });
 
      return htmlTags;
-
-
 }
 
 
@@ -135,7 +139,9 @@ function carregarProjetos(idGrupo){
                             '<div class="card-content">'+
                             '<span class="card-title grey-text text-darken-4" >'+projeto.nome+
                             '<br><br>';
-                projetoTag += preencherTags(projeto.tags, projeto.fotos);
+                if(projeto.tags != undefined && projeto.tags != ""){
+                    projetoTag += preencherTags(projeto.tags, projeto.fotos);
+                }
           
                 projetoTag += '<br><br><img src="imagem/like.png" style="width: 20px; height: 20px;">'+
                             '<span class="blue-text darken-4" style="margin-left: 3px; font-size: 15px; font-weight: bold;">'+

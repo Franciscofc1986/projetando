@@ -2,8 +2,8 @@
 	include 'ChromePhp.php';
 	ChromePhp::log("Console ok");
 	session_start();
-	$pdo = new PDO('mysql:host=127.0.0.1;dbname=projetando;charset=utf8', 'francisco', 'francisco');
-	//$pdo = new PDO('mysql:host=localhost;dbname=temlo861_projetando;charset=utf8', 'temlo861_francis', 'francisco');
+	//$pdo = new PDO('mysql:host=127.0.0.1;dbname=projetando;charset=utf8', 'francisco', 'francisco');
+	$pdo = new PDO('mysql:host=localhost;dbname=temlo861_projetando;charset=utf8', 'temlo861_francis', 'francisco');
 	
 	$method=$_SERVER["REQUEST_METHOD"];
 

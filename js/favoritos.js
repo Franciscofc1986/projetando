@@ -31,7 +31,10 @@ function carregarFavoritos(){
                             '<div class="card-content">'+
                             '<span class="card-title grey-text text-darken-4" >'+projeto.nome+
                             '<br><br>';
-                projetoTag += preencherTags(projeto.tags, projeto.fotos);
+                            
+                if(projeto.tags != undefined && projeto.tags != ""){
+                    projetoTag += preencherTags(projeto.tags, projeto.fotos);
+                }
           
                 projetoTag += '<br><br><img src="imagem/like.png" style="width: 20px; height: 20px;">'+
                             '<span class="blue-text darken-4" style="margin-left: 3px; font-size: 15px; font-weight: bold;">'+

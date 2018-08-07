@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+        }
+        /* Style the tab */
+        
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        /* Style the buttons inside the tab */
+        
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        /* Change background color of buttons on hover */
+        
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        /* Create an active/current tablink class */
+        
+        .tab button.active {
+            background-color: #ccc;
+        }
+        /* Style the tab content */
+        
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>Click on the buttons inside the tabbed menu:</p>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'London')">Cadastrar Projeto</button>
+        <button class="tablinks" onclick="openCity(event, 'Londres')">Cadastrar Grupo</button>
+    </div>
+
+    <div id="London" class="tabcontent">
+        <h4>Cadastrar Projeto</h4>
+        <div>
+            <label for="idUsuario">idUsuario:</label>
+            <input type="text" id="idUsuario" name="idUsuario" value="1" />
+        </div>
+        <br>
+        <div>
+            <label for="nome">Nome do Projeto:</label>
+            <input type="text" id="nome" name="nome" />
+        </div>
+        <br>
+        <div>
+            <label for="codigoVideo">Código do vídeo:</label>
+            <input type="text" id="codigoVideo" name="codigoVideo" />
+        </div>
+        <br>
+        <div>
+            <h5>Dificuldade:</h5>
+            <label for="porcentagem">Porcentagem:</label>
+            <input type="text" id="porcentagem" name="porcentagem" />
+            <br>
+            <select class="alertas" multiple size="10" style="height: 100%;">
+                <option value="1">1 - Qualquer criança faz !</option>
+                <option value="2">2 - Tenha atenção e paciência !</option>
+                <option value="3">3 - Cuidado com o fogo !</option>
+                <option value="4">4 - Atenção aos trabalhos manuais !</option>
+                <option value="5">5 - Necessita da presença de um adulto !</option>
+                <option value="6">6 - Cuidado com o choque !</option>
+                <option value="7">7 - Atenção aos detalhes de execução !</option>
+                <option value="8">8 - Exige prática com ferramentas !</option>
+                <option value="9">9 - Deve ser executado ao ar livre !</option>
+                <option value="10">10 - Exige habilidades artisticas !</option>
+            </select>
+        </div>
+        <hr>
+        <h4>MATERIAIS:</h4>
+        <button onclick="adicionarCampo()">Adicionar item</button>
+        
+        <div id="campos">
+            
+        </div>
+        <br>
+        <hr>
+        <h4>Ferramentas:</h4>
+        <button onclick="adicionarFerramenta()">Adicionar item</button>
+        
+        <div id="ferramentaLista">
+            
+        </div>
+        <br>
+        <hr>
+        <h4>PASSOS:</h4>
+        <button onclick="adicionarPasso()">Adicionar passo</button>
+        
+        <div id="passos">
+            
+        </div>
+        <br><br>
+        <hr>
+        <button onclick="analisarItens()">SALVAR PROJETO</button>
+    </div>
+    <div id="Londres" class="tabcontent">
+        <h4>Cadastrar Grupo</h4>
+        <div>
+            <label for="idUsuario">idUsuario:</label>
+            <input type="text" id="idUsuario" name="idUsuario" value="1" />
+        </div>
+        <hr>
+        <h4>MATERIAIS:</h4>
+        <button onclick="adicionarCampo()">Adicionar item</button>
+        
+        <div id="campos">
+            
+        </div>
+        <br><br>
+        <button onclick="analisarItens()">SALVAR PROJETO</button>
+    </div>
+
+
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+        //called when key is pressed in textbox
+            $(".valores").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                        return false;
+                }
+            });
+        });
+
+        //var urlBase = "http://temlogica.com";
+        var urlBase = "http://localhost";
+
+        var contadorCampos = 0;
+
+        function adicionarCampo(){
+            var novoCampo = '<hr>Quantidade: <input type="text" class="quantidades" required/> ';
+            novoCampo += '<br>Item:<input type="text" class="itens" required/>';
+            novoCampo += '<br>Valor:<input type="text" class="valores" required/>';
+            $('#campos').append(novoCampo);
+        }
+
+        function adicionarFerramenta(){
+            var novaFerramenta = '<hr><br>Ferramenta:<input type="text" class="ferramentas" required/><br>';
+            $('#ferramentaLista').append(novaFerramenta);
+        }
+
+        
+ 
+        function adicionarPasso(){
+            contadorCampos++;
+            var novoPasso = '<hr>Ordem: <input type="text" class="ordens" value="'+contadorCampos+'º Passo" required/> ';
+            novoPasso += '<br>Passo:<input type="text" class="passos" required/>';
+            $('#passos').append(novoPasso);
+        }
+
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function analisarItens(){
+
+            var projetoObjeto = new Object();
+
+            // var element = {}, cart = [];
+            // element.id = id;
+            // element.quantity = quantity;
+            // cart.push(element);
+            
+            var materiaisJson = "";
+
+            var custosJson = "";
+
+            var dificuldadesJson = "";
+
+            //Criando o Json de passos---------------------------------
+            var passopassoJson = "";
+            var todasOrdens = document.getElementsByClassName("ordens");
+            var todosPassos = document.getElementsByClassName("passos");
+            var passopassoJson = "{";
+            for(i=0;i<todasOrdens.length;i++){
+                passopassoJson += '\\"' + todasOrdens[i].value + '\\":\\"' + todosPassos[i].value + '\\"';
+                if(i < todasOrdens.length-1) passopassoJson += ', ';
+            }
+            passopassoJson += "}";
+            projetoObjeto["passos"] = passopassoJson;
+            //----------------------------------------------------------
+
+            //Criando o Json de materiais---------------------------------
+            var materiaisJson = "";
+            var todasQuantidades= document.getElementsByClassName("quantidades");
+            var todosItens = document.getElementsByClassName("itens");
+            var todasFerramentas= document.getElementsByClassName("ferramentas");
+            var materiaisJson = '{\\"materiais\\":{';
+            for(i=0;i<todasQuantidades.length;i++){
+                materiaisJson += '\\"' + todasQuantidades[i].value + '\\":\\"' + todosItens[i].value + '\\"';
+                if(i < todasQuantidades.length-1) materiaisJson += ', ';
+            }
+            materiaisJson += '},\\"ferramentas\\":[';
+
+            for(i=0;i<todasFerramentas.length;i++){
+                materiaisJson += '\\"' + todasFerramentas[i].value + '\\"';
+                if(i < todasFerramentas.length-1) materiaisJson += ', ';
+            }
+
+
+            materiaisJson += ']}';
+            projetoObjeto["materiais"] = materiaisJson;
+            //----------------------------------------------------------
+
+            //Criando o Json de custos---------------------------------
+            var custosJson = "";
+            var todosValores = document.getElementsByClassName("valores");
+            var custosJson = "{";
+            var somaValores = 0;
+            for(i=0;i<todasQuantidades.length;i++){
+                somaValores += Number(todosValores[i].value);
+                custosJson += '\\"' + todasQuantidades[i].value + ' x ' + todosItens[i].value +'\\": ' + todosValores[i].value + '';
+                custosJson += ', ';
+            }
+            custosJson += '\\"TOTAL\\": '+ somaValores +'}';
+            projetoObjeto["custos"] = custosJson;
+            //----------------------------------------------------------
+
+            //Criando o Json da dificuldade---------------------------------
+            var dificuldadeJson = "";
+            var valorPorcentagem = $('#porcentagem').val();
+            dificuldadeJson = '{\\"dificuldade\\":' + valorPorcentagem + ',\\"alertas\\": [';
+
+            //var testeAlertas = $('.alertas').filter('checked');
+            $.each($(".alertas option:checked"), function(){            
+                dificuldadeJson += $(this).val() + ',';
+            });
+
+            dificuldadeJson = dificuldadeJson.slice(0, -1); 
+
+            dificuldadeJson += ']}';
+
+            projetoObjeto["dificuldade"] = dificuldadeJson;
+
+            
+
+            // for(i=0;i<alertasSelecionados.length;i++){
+                
+            // }
+            //----------------------------------------------------------
+
+            console.log(projetoObjeto);
+            enviarProjeto(projetoObjeto);
+
+            // $('.quantidades').each(function() {
+            //     console.log($(this).val());
+            // });
+        }
+
+        function enviarProjeto(projeto) {
+
+
+            // Exemplo de requisição POST
+            var ajax = new XMLHttpRequest();
+
+            // Seta tipo de requisição: Post e a URL da API
+            var url = urlBase + "/api.php/tbprojeto/";
+
+            ajax.open("POST", url, true);
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            // Seta paramêtros da requisição e envia a requisição
+            var idUsuario = $('#idUsuario').val();
+            var nomeProjeto = $('#nome').val();
+            var codigoVideo = $('#codigoVideo').val();
+
+            var parametros = "idUsuario=" + idUsuario + "&nome=" + nomeProjeto + 
+            "&codigoVideo=" + codigoVideo + "&passosJson=" + projeto.passos +
+            "&custosJson=" + projeto.custos + 
+            "&dificuldadesJson=" + projeto.dificuldade + 
+            "&materiaisJson=" + projeto.materiais;
+            
+            console.log(parametros);
+            
+            ajax.send(parametros);
+
+            // Cria um evento para receber o retorno.
+            ajax.onreadystatechange = function () {
+
+                // Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
+                if (ajax.readyState == 4 && ajax.status == 200) {
+
+                    var data = ajax.responseText;
+
+                    // Retorno do Ajax
+                    console.log(data);
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -5,7 +5,7 @@ require_once("comum/topo.php");
     <div class="row container">
         <section class="col s12 m6 l9">
             </br>
-            <h5 class="light" id="tituloProjeto">Projetos que curti</h5>
+            <h5 class="light titulo" id="tituloProjeto">Projetos que curti</h5>
         </section>
     </div>
     <div class="container">
